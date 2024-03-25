@@ -1,20 +1,34 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { VaccinesController } from './vaccines.controller';
 import { VaccinesService } from './vaccines.service';
+import { assert } from 'console';
 
 describe('VaccinesController', () => {
   let controller: VaccinesController;
+  const vaccineServiceMock = {
+    create: jest.fn(),
 
-  beforeEach(async () => {
-    const module: TestingModule = await Test.createTestingModule({
-      controllers: [VaccinesController],
-      providers: [VaccinesService],
-    }).compile();
+    findAll: jest.fn(),
 
-    controller = module.get<VaccinesController>(VaccinesController);
+    findOne: jest.fn(),
+
+    update: jest.fn(),
+
+    remove: jest.fn(),
+  };
+  beforeAll(() => {
+    controller = new VaccinesController(vaccineServiceMock);
   });
-
   it('should be defined', () => {
     expect(controller).toBeDefined();
+  });
+  it('should find one vaccine.', async () => {
+    // arrange
+    const expected = 'mockedReturnValue';
+    vaccineServiceMock.findOne.mockReturnValue(expected);
+    //act
+    const result = controller.findOne('10');
+    //assert
+    expect(result).toBe(expected);
   });
 });
