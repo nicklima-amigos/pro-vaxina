@@ -2,6 +2,10 @@ name: Run Unit Tests on Multiple OS
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - dev
+      - main
   pull_request:
     branches:
       - dev
