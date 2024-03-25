@@ -66,4 +66,8 @@ jobs:
       - name: Change Directory to API
         run: cd api
 
-      - nam
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Run Tests
+        run: npm run test
