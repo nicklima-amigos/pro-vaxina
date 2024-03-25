@@ -1,19 +1,12 @@
-import { Test, TestingModule } from '@nestjs/testing';
 import { VaccinesController } from './vaccines.controller';
-import { VaccinesService } from './vaccines.service';
-import { assert } from 'console';
 
 describe('VaccinesController', () => {
   let controller: VaccinesController;
   const vaccineServiceMock = {
     create: jest.fn(),
-
     findAll: jest.fn(),
-
     findOne: jest.fn(),
-
     update: jest.fn(),
-
     remove: jest.fn(),
   };
   beforeAll(() => {
