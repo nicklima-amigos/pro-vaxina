@@ -18,18 +18,17 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Change Directory to API
-        run: cd api
-
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
           node-version: 18
 
       - name: Install Dependencies
+        working-directory: ./api
         run: npm install
 
       - name: Run Tests
+        working-directory: ./api
         run: npm run test
 
   run-tests-macos:
@@ -38,18 +37,17 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Change Directory to API
-        run: cd api
-
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
           node-version: 18
 
       - name: Install Dependencies
+        working-directory: ./api
         run: npm install
 
       - name: Run Tests
+        working-directory: ./api
         run: npm run test
 
   run-tests-windows:
@@ -58,16 +56,15 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Change Directory to API
-        run: cd api
-
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
           node-version: 18
 
       - name: Install Dependencies
+        working-directory: ./api
         run: npm install
 
       - name: Run Tests
+        working-directory: ./api
         run: npm run test
