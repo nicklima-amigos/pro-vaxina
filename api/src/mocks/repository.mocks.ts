@@ -4,18 +4,15 @@ import { Patient } from '../patients/entities/patient.entity';
 import { VaccinationRecord } from '../vaccination-records/entities/vaccination-record.entity';
 import { Vaccine } from '../vaccines/entities/vaccine.entity';
 
-// TODO: Create mock repositories and pass them as useValue in each provider
-export const mockRepositoryProviders: Provider[] = [
-  {
-    provide: getRepositoryToken(Patient),
-    useValue: {} as any,
+const entities = [Patient, VaccinationRecord, Vaccine];
+
+export const mockRepositoryProviders: Provider[] = entities.map((entity) => ({
+  provide: getRepositoryToken(entity),
+  useValue: {
+    find: jest.fn(),
+    findOne: jest.fn(),
+    save: jest.fn(),
+    update: jest.fn(),
+    delete: jest.fn(),
   },
-  {
-    provide: getRepositoryToken(VaccinationRecord),
-    useValue: {} as any,
-  },
-  {
-    provide: getRepositoryToken(Vaccine),
-    useValue: {} as any,
-  },
-];
+}));
