@@ -4,7 +4,7 @@ import { Patient } from '../patients/entities/patient.entity';
 import { VaccinationRecord } from '../vaccination-records/entities/vaccination-record.entity';
 import { Vaccine } from '../vaccines/entities/vaccine.entity';
 
-// TODO: Create mock repositories and passe them as useValue in each provider
+// TODO: Create mock repositories and pass them as useValue in each provider
 export const mockRepositoryProviders: Provider[] = [
   {
     provide: getRepositoryToken(Patient),
