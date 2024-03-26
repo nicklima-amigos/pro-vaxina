@@ -1,5 +1,6 @@
 import {
   CreateDateColumn,
+  Entity,
   ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
@@ -7,6 +8,7 @@ import {
 import { Patient } from '../../patients/entities/patient.entity';
 import { Vaccine } from '../../vaccines/entities/vaccine.entity';
 
+@Entity('vaccination_record')
 export class VaccinationRecord {
   @PrimaryGeneratedColumn()
   id: number;
