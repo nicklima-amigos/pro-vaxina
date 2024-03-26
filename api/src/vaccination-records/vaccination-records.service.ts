@@ -3,10 +3,12 @@ import { CreateVaccinationRecordDto } from './dto/create-vaccination-record.dto'
 import { UpdateVaccinationRecordDto } from './dto/update-vaccination-record.dto';
 import { Repository } from 'typeorm';
 import { VaccinationRecord } from './entities/vaccination-record.entity';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class VaccinationRecordsService {
   constructor(
+    @InjectRepository(VaccinationRecord)
     private vaccinationRecordsRepository: Repository<VaccinationRecord>,
   ) {}
 
@@ -30,6 +32,6 @@ export class VaccinationRecordsService {
   }
 
   remove(id: number) {
-    return this.vaccinationRecordsRepository.delete({ where: { id } });
+    return this.vaccinationRecordsRepository.delete({ id });
   }
 }
