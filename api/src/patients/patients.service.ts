@@ -3,10 +3,14 @@ import { Repository } from 'typeorm';
 import { CreatePatientDto } from './dto/create-patient.dto';
 import { UpdatePatientDto } from './dto/update-patient.dto';
 import { Patient } from './entities/patient.entity';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class PatientsService {
-  constructor(private patientsRepository: Repository<Patient>) {}
+  constructor(
+    @InjectRepository(Patient)
+    private patientsRepository: Repository<Patient>,
+  ) {}
 
   create(createPatientDto: CreatePatientDto) {
     return this.patientsRepository.create(createPatientDto);
@@ -25,6 +29,6 @@ export class PatientsService {
   }
 
   remove(id: number) {
-    return this.patientsRepository.delete({ where: { id } });
+    return this.patientsRepository.delete({ id });
   }
 }
