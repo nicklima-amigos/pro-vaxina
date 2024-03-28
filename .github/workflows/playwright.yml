@@ -14,14 +14,12 @@ jobs:
         with:
           node-version: 18
       - name: Install dependencies
-        working-directory: ./web
-        run: npm ci
+        run: npm run install-frontend
       - name: Install Playwright Browsers
         working-directory: ./web
         run: npx playwright install --with-deps
       - name: Run Playwright tests
-        working-directory: ./web
-        run: npx playwright test
+        run: npm run test-e2e
       - uses: actions/upload-artifact@v3
         if: always()
         with:

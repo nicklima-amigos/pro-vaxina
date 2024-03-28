@@ -1,0 +1,29 @@
+{
+  "name": "pro-vaxina",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "lint": "npm run lint-backend && npm run lint-frontend",
+    "install-all": "npm install && npm run install-backend && npm run install-frontend",
+    "install-backend": "cd ./api && npm install",
+    "install-frontend": "cd ./web && npm install",
+    "prepare": "husky",
+    "lint-backend": "cd ./api && npm run lint",
+    "lint-frontend": "cd ./web && npm run lint",
+    "test": "npm run test-backend && npm run test-e2e",
+    "test-backend": "cd ./api && npm run test",
+    "test-e2e": "cd ./web && npm run test:e2e",
+    "check": "npm run check-backend && npm run check-frontend",
+    "check-backend": "cd ./api && npm run check",
+    "check-frontend": "cd ./web && npm run check"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@commitlint/cli": "^19.2.1",
+    "@commitlint/config-conventional": "^19.1.0",
+    "husky": "^9.0.11"
+  }
+}
