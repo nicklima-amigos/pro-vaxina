@@ -5,6 +5,9 @@
   "main": "index.js",
   "scripts": {
     "lint": "npm run lint-backend && npm run lint-frontend",
+    "install-all": "npm install && npm run install-backend && npm run install-frontend",
+    "install-backend": "cd ./api && npm install",
+    "install-frontend": "cd ./web && npm install",
     "prepare": "husky",
     "lint-backend": "cd ./api && npm run lint",
     "lint-frontend": "cd ./web && npm run lint",
