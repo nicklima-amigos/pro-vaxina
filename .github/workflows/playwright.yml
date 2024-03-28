@@ -14,7 +14,7 @@ jobs:
         with:
           node-version: 18
       - name: Install dependencies
-        run: npm install-frontend
+        run: npm run install-frontend
       - name: Install Playwright Browsers
         working-directory: ./web
         run: npx playwright install --with-deps

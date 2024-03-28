@@ -24,7 +24,7 @@ jobs:
           node-version: 18
 
       - name: Install Dependencies
-        run: npm install-backend
+        run: npm run install-backend
 
       - name: Run Tests
         run: npm run test-backend
@@ -41,7 +41,7 @@ jobs:
           node-version: 18
 
       - name: Install Dependencies
-        run: npm install-backend
+        run: npm run install-backend
 
       - name: Run Tests
         run: npm run test-backend
@@ -58,7 +58,7 @@ jobs:
           node-version: 18
 
       - name: Install Dependencies
-        run: npm install-backend
+        run: npm run install-backend
 
       - name: Run Tests
         run: npm run test-backend
