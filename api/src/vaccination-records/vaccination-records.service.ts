@@ -1,26 +1,37 @@
 import { Injectable } from '@nestjs/common';
 import { CreateVaccinationRecordDto } from './dto/create-vaccination-record.dto';
 import { UpdateVaccinationRecordDto } from './dto/update-vaccination-record.dto';
+import { Repository } from 'typeorm';
+import { VaccinationRecord } from './entities/vaccination-record.entity';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class VaccinationRecordsService {
+  constructor(
+    @InjectRepository(VaccinationRecord)
+    private vaccinationRecordsRepository: Repository<VaccinationRecord>,
+  ) {}
+
   create(createVaccinationRecordDto: CreateVaccinationRecordDto) {
-    return 'This action adds a new vaccinationRecord';
+    return this.vaccinationRecordsRepository.save(createVaccinationRecordDto);
   }
 
   findAll() {
-    return `This action returns all vaccinationRecords`;
+    return this.vaccinationRecordsRepository.find();
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} vaccinationRecord`;
+    return this.vaccinationRecordsRepository.findOne({ where: { id } });
   }
 
   update(id: number, updateVaccinationRecordDto: UpdateVaccinationRecordDto) {
-    return `This action updates a #${id} vaccinationRecord`;
+    return this.vaccinationRecordsRepository.save({
+      id,
+      ...updateVaccinationRecordDto,
+    });
   }
 
   remove(id: number) {
-    return `This action removes a #${id} vaccinationRecord`;
+    return this.vaccinationRecordsRepository.delete({ id });
   }
 }
