@@ -68,6 +68,11 @@
       "json",
       "ts"
     ],
+    "husky": {
+      "hooks": {
+        "pre-commit": "npm run commitlint"
+      }
+    },
     "rootDir": "src",
     "testRegex": ".*\\.spec\\.ts$",
     "transform": {
