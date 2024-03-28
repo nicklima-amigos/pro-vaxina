@@ -8,8 +8,9 @@
     "prepare": "husky",
     "lint-backend": "cd ./api && npm run lint",
     "lint-frontend": "cd ./web && npm run lint",
+    "test": "npm run test-backend && npm run test-frontend && npm run test-e2e",
     "test-backend": "cd ./api && npm run test",
-    "test-frontend": "cd ./web && npm run test"
+    "test-e2e": "cd ./web && npm run test:e2e"
   },
   "keywords": [],
   "author": "",
