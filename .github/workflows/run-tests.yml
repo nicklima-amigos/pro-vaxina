@@ -1,4 +1,4 @@
-name: Run Unit Tests on Multiple OS
+name: Run Unit Tests
 
 on:
   workflow_dispatch:
