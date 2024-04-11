@@ -16,3 +16,11 @@ export const mockRepositoryProviders: Provider[] = entities.map((entity) => ({
     delete: jest.fn(),
   },
 }));
+
+export const vaccineRepository = {
+  find: jest.fn(),
+  findOne: jest.fn(),
+  save: jest.fn(),
+  update: jest.fn(),
+  delete: jest.fn(),
+};
