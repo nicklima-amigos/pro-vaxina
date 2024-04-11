@@ -10,16 +10,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+
       - uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: 20
+
       - name: Install dependencies
         run: npm run install-frontend
+
       - name: Install Playwright Browsers
         working-directory: ./web
         run: npx playwright install --with-deps
+
       - name: Run Playwright tests
         run: npm run test-e2e
+
       - uses: actions/upload-artifact@v3
         if: always()
         with:
