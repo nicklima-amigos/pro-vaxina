@@ -4,7 +4,7 @@ import { Patient } from '@src/patients/entities/patient.entity';
 import { VaccinationRecord } from '@src/vaccination-records/entities/vaccination-record.entity';
 import { Vaccine } from '@src/vaccines/entities/vaccine.entity';
 
-export const repositoryMockFactory = () => ({
+const repositoryMockFactory = () => ({
   find: jest.fn(),
   findOne: jest.fn(),
   save: jest.fn(),
@@ -13,9 +13,7 @@ export const repositoryMockFactory = () => ({
 });
 
 export const vaccinationRecords = repositoryMockFactory();
-
 export const patients = repositoryMockFactory();
-
 export const vaccines = repositoryMockFactory();
 
 export const providers: Provider[] = [
