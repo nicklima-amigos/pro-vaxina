@@ -4,7 +4,7 @@ import { Patient } from '@src/patients/entities/patient.entity';
 import { VaccinationRecord } from '@src/vaccination-records/entities/vaccination-record.entity';
 import { Vaccine } from '@src/vaccines/entities/vaccine.entity';
 
-export const vaccinationRecordsRepositoryMock = {
+export const vaccinationRecords = {
   find: jest.fn(),
   findOne: jest.fn(),
   save: jest.fn(),
@@ -12,7 +12,7 @@ export const vaccinationRecordsRepositoryMock = {
   delete: jest.fn(),
 };
 
-export const patientsRepositoryMock = {
+export const patients = {
   find: jest.fn(),
   findOne: jest.fn(),
   save: jest.fn(),
@@ -20,7 +20,7 @@ export const patientsRepositoryMock = {
   delete: jest.fn(),
 };
 
-export const vaccinesRepositoryMock = {
+export const vaccines = {
   find: jest.fn(),
   findOne: jest.fn(),
   save: jest.fn(),
@@ -28,17 +28,17 @@ export const vaccinesRepositoryMock = {
   delete: jest.fn(),
 };
 
-export const mockRepositoryProviders: Provider[] = [
+export const providers: Provider[] = [
   {
     provide: getRepositoryToken(Patient),
-    useValue: patientsRepositoryMock,
+    useValue: patients,
   },
   {
     provide: getRepositoryToken(VaccinationRecord),
-    useValue: vaccinationRecordsRepositoryMock,
+    useValue: vaccinationRecords,
   },
   {
     provide: getRepositoryToken(Vaccine),
-    useValue: vaccinesRepositoryMock,
+    useValue: vaccines,
   },
 ];

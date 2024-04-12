@@ -2,10 +2,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { VaccinesController } from './vaccines.controller';
 import { VaccinesService } from './vaccines.service';
 import { vaccineItem } from '@src/tests/stubs/vaccines.stubs';
-import {
-  mockRepositoryProviders,
-  vaccinesRepositoryMock,
-} from '@src/tests/mocks/repository.mocks';
+import { repositoryMocks } from '@src/tests/mocks';
 
 describe('VaccinesController', () => {
   let controller: VaccinesController;
@@ -13,7 +10,7 @@ describe('VaccinesController', () => {
   beforeAll(async () => {
     const module: TestingModule = await Test.createTestingModule({
       controllers: [VaccinesController],
-      providers: [VaccinesService, ...mockRepositoryProviders],
+      providers: [VaccinesService, ...repositoryMocks.providers],
     }).compile();
 
     controller = module.get<VaccinesController>(VaccinesController);
@@ -27,7 +24,7 @@ describe('VaccinesController', () => {
 
   it('should find one vaccine.', async () => {
     // arrange
-    vaccinesRepositoryMock.findOne.mockResolvedValue(vaccineItem);
+    repositoryMocks.vaccines.findOne.mockResolvedValue(vaccineItem);
 
     //act
     const result = await controller.findOne(`${vaccineItem.id}`);
