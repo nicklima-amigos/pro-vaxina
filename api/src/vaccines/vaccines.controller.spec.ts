@@ -4,7 +4,7 @@ import { Vaccine } from './entities/vaccine.entity';
 import { VaccinesController } from './vaccines.controller';
 import { VaccinesService } from './vaccines.service';
 import { vaccineItem } from '../stubs/vaccines.stubs';
-import { vaccineRepository } from '../mocks/repository.mocks';
+import { vaccinesRepositoryMock } from '@src/mocks/repository.mocks';
 
 describe('VaccinesController', () => {
   let controller: VaccinesController;
@@ -16,7 +16,7 @@ describe('VaccinesController', () => {
         VaccinesService,
         {
           provide: getRepositoryToken(Vaccine),
-          useValue: vaccineRepository,
+          useValue: vaccinesRepositoryMock,
         },
       ],
     }).compile();
@@ -32,7 +32,7 @@ describe('VaccinesController', () => {
 
   it('should find one vaccine.', async () => {
     // arrange
-    vaccineRepository.findOne.mockResolvedValue(vaccineItem);
+    vaccinesRepositoryMock.findOne.mockResolvedValue(vaccineItem);
 
     //act
     const result = await controller.findOne(`${vaccineItem.id}`);
