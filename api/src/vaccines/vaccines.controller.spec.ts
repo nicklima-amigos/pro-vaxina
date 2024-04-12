@@ -1,10 +1,11 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { getRepositoryToken } from '@nestjs/typeorm';
-import { Vaccine } from './entities/vaccine.entity';
 import { VaccinesController } from './vaccines.controller';
 import { VaccinesService } from './vaccines.service';
 import { vaccineItem } from '../stubs/vaccines.stubs';
-import { vaccinesRepositoryMock } from '@src/mocks/repository.mocks';
+import {
+  mockRepositoryProviders,
+  vaccinesRepositoryMock,
+} from '@src/mocks/repository.mocks';
 
 describe('VaccinesController', () => {
   let controller: VaccinesController;
@@ -12,13 +13,7 @@ describe('VaccinesController', () => {
   beforeAll(async () => {
     const module: TestingModule = await Test.createTestingModule({
       controllers: [VaccinesController],
-      providers: [
-        VaccinesService,
-        {
-          provide: getRepositoryToken(Vaccine),
-          useValue: vaccinesRepositoryMock,
-        },
-      ],
+      providers: [VaccinesService, ...mockRepositoryProviders],
     }).compile();
 
     controller = module.get<VaccinesController>(VaccinesController);
