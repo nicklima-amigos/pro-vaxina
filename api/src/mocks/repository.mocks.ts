@@ -3,33 +3,30 @@ import { getRepositoryToken } from '@nestjs/typeorm';
 import { Patient } from '@src/patients/entities/patient.entity';
 import { VaccinationRecord } from '@src/vaccination-records/entities/vaccination-record.entity';
 import { Vaccine } from '@src/vaccines/entities/vaccine.entity';
-import { Repository } from 'typeorm';
 
-export const vaccinationRecordsRepositoryMock: jest.Mocked<
-  Repository<VaccinationRecord>
-> = {
+export const vaccinationRecordsRepositoryMock = {
   find: jest.fn(),
   findOne: jest.fn(),
   save: jest.fn(),
   update: jest.fn(),
   delete: jest.fn(),
-} as any;
+};
 
-export const patientsRepositoryMock: jest.Mocked<Repository<Patient>> = {
+export const patientsRepositoryMock = {
   find: jest.fn(),
   findOne: jest.fn(),
   save: jest.fn(),
   update: jest.fn(),
   delete: jest.fn(),
-} as any;
+};
 
-export const vaccinesRepositoryMock: jest.Mocked<Repository<Vaccine>> = {
+export const vaccinesRepositoryMock = {
   find: jest.fn(),
   findOne: jest.fn(),
   save: jest.fn(),
   update: jest.fn(),
   delete: jest.fn(),
-} as any;
+};
 
 export const mockRepositoryProviders: Provider[] = [
   {
