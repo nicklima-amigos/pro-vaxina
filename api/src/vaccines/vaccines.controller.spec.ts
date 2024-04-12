@@ -1,18 +1,21 @@
+import { Test, TestingModule } from '@nestjs/testing';
 import { VaccinesController } from './vaccines.controller';
-
-const vaccineServiceMock = {
-  create: jest.fn(),
-  findAll: jest.fn(),
-  findOne: jest.fn(),
-  update: jest.fn(),
-  remove: jest.fn(),
-};
+import { VaccinesService } from './vaccines.service';
+import { vaccineItem } from '@src/tests/stubs/vaccines.stubs';
+import { repositoryMocks } from '@src/tests/mocks';
 
 describe('VaccinesController', () => {
   let controller: VaccinesController;
 
-  beforeAll(() => {
-    controller = new VaccinesController(vaccineServiceMock as any);
+  beforeAll(async () => {
+    const module: TestingModule = await Test.createTestingModule({
+      controllers: [VaccinesController],
+      providers: [VaccinesService, ...repositoryMocks.providers],
+    }).compile();
+
+    controller = module.get<VaccinesController>(VaccinesController);
+
+    await module.init();
   });
 
   it('should be defined', () => {
@@ -21,13 +24,14 @@ describe('VaccinesController', () => {
 
   it('should find one vaccine.', async () => {
     // arrange
-    const expected = 'mockedReturnValue';
-    vaccineServiceMock.findOne.mockReturnValue(expected);
+    repositoryMocks.vaccines.findOne.mockResolvedValue(vaccineItem);
 
     //act
-    const result = controller.findOne('10');
+    const result = await controller.findOne(`${vaccineItem.id}`);
 
     //assert
-    expect(result).toBe(expected);
+    expect(result.id).toBe(vaccineItem.id);
+    expect(result.model).toBe(vaccineItem.model);
+    expect(result.illness).toBe(vaccineItem.illness);
   });
 });
