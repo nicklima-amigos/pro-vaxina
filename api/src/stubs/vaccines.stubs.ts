@@ -1,4 +1,4 @@
-import { Vaccine } from 'src/vaccines/entities/vaccine.entity';
+import { Vaccine } from '@src/vaccines/entities/vaccine.entity';
 
 export const vaccineItem: Vaccine = {
   id: 1,

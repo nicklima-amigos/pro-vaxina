@@ -1,8 +1,8 @@
 import { Provider } from '@nestjs/common';
 import { getRepositoryToken } from '@nestjs/typeorm';
-import { Patient } from '../patients/entities/patient.entity';
-import { VaccinationRecord } from '../vaccination-records/entities/vaccination-record.entity';
-import { Vaccine } from '../vaccines/entities/vaccine.entity';
+import { Patient } from '@src/patients/entities/patient.entity';
+import { VaccinationRecord } from '@src/vaccination-records/entities/vaccination-record.entity';
+import { Vaccine } from '@src/vaccines/entities/vaccine.entity';
 import { Repository } from 'typeorm';
 
 export const vaccinationRecordsRepositoryMock: jest.Mocked<

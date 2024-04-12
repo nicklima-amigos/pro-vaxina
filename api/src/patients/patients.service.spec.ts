@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { PatientsService } from './patients.service';
-import { mockRepositoryProviders } from '../mocks/repository.mocks';
+import { mockRepositoryProviders } from '@src/mocks/repository.mocks';
 
 describe('PatientsService', () => {
   let service: PatientsService;
