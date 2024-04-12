@@ -1,5 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { mockRepositoryProviders } from '@src/mocks/repository.mocks';
+import { mockRepositoryProviders } from '@src/tests/mocks/repository.mocks';
 import { PatientsController } from './patients.controller';
 import { PatientsService } from './patients.service';
 

@@ -1,11 +1,11 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { VaccinesController } from './vaccines.controller';
 import { VaccinesService } from './vaccines.service';
-import { vaccineItem } from '../stubs/vaccines.stubs';
+import { vaccineItem } from '@src/tests/stubs/vaccines.stubs';
 import {
   mockRepositoryProviders,
   vaccinesRepositoryMock,
-} from '@src/mocks/repository.mocks';
+} from '@src/tests/mocks/repository.mocks';
 
 describe('VaccinesController', () => {
   let controller: VaccinesController;
