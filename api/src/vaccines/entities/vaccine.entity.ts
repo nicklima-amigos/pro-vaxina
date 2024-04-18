@@ -12,7 +12,7 @@ export class Vaccine {
   id: number;
 
   @CreateDateColumn()
-  createtAt: Date;
+  createdAt: Date;
 
   @UpdateDateColumn()
   updatedAt: Date;
@@ -24,5 +24,5 @@ export class Vaccine {
   manufacturer: string;
 
   @Column()
-  disease: string;
+  illness: string;
 }

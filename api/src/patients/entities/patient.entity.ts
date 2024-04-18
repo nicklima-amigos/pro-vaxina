@@ -6,7 +6,7 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { VaccinationRecord } from '../../vaccination-records/entities/vaccination-record.entity';
+import { VaccinationRecord } from '@src/vaccination-records/entities/vaccination-record.entity';
 
 @Entity('patient')
 export class Patient {
