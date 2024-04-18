@@ -78,8 +78,8 @@ const patch = (params: RequestParams) => {
   return request({ method: RequestMethod.PATCH, ...params });
 };
 
-// JavaScript doesn't let us name this method "delete", so we declare it as "remove"
-// and rename the object's method when exporting below.
+// JavaScript doesn't let us name this function as "delete", so we declare it as
+// "remove" and rename the object's method when exporting below.
 const remove = (params: RequestParams) => {
   return request({ method: RequestMethod.DELETE, ...params });
 };
