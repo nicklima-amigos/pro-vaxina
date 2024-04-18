@@ -1,7 +1,8 @@
 const getApiUrl = () => {
-  return typeof window !== 'undefined'
-    ? process.env.NEXT_PUBLIC_API_URL!
-    : process.env.API_URL!;
+  if (typeof window !== 'undefined') {
+    return process.env.NEXT_PUBLIC_API_URL!;
+  }
+  return process.env.API_URL!;
 };
 
 const apiUrl = getApiUrl();
