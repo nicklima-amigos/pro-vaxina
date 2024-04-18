@@ -1,13 +1,15 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
-import './globals.css';
-
-const inter = Inter({ subsets: ['latin'] });
+import { Inter as FontSans } from 'next/font/google';
+import { cn } from '@/lib/utils';
+import '../styles/globals.css';
 
 export const metadata: Metadata = {
   title: 'Pro Vaxina',
 };
-
+const fontSans = FontSans({
+  subsets: ['latin'],
+  variable: '--font-sans',
+});
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -15,7 +17,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body
+        className={cn(
+          'min-h-screen bg-gray-200 antialiased',
+          fontSans.variable
+        )}
+      >
+        {children}
+      </body>
     </html>
   );
 }
