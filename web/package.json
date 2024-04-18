@@ -9,6 +9,7 @@
     "test:e2e": "npx playwright test",
     "test:e2e:debug:ui": "npx playwright test --debug --ui",
     "test:e2e:codegen": "npx playwright codegen",
+    "check": "tsc --noEmit",
     "lint": "next lint"
   },
   "dependencies": {
