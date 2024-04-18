@@ -11,7 +11,7 @@ const addApiUrlPrefix = (endpoint: string) => {
   return apiUrl + endpoint;
 };
 
-export const RequestMethod = {
+const RequestMethod = {
   GET: 'GET',
   POST: 'POST',
   PUT: 'PUT',
