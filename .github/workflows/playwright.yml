@@ -29,6 +29,12 @@ jobs:
         working-directory: ./web
         run: npx playwright install --with-deps
 
+      - name: Start Api
+        run: npm run backend:ci
+
+      - name: Wait for Api
+        run: npm run wait-for-api
+
       - name: Run Playwright tests
         run: npm run test-e2e
 
