@@ -22,12 +22,8 @@ jobs:
         with:
           node-version: 20
 
-      - name: Install backend dependencies
-        working-directory: ./api
-        run: npm install
-
       - name: Install dependencies
-        run: npm run install-frontend
+        run: npm run install-all
 
       - name: Install Playwright Browsers
         working-directory: ./web
