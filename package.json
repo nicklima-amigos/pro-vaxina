@@ -16,7 +16,9 @@
     "test-e2e": "cd ./web && npm run test:e2e",
     "check": "npm run check-backend && npm run check-frontend",
     "check-backend": "cd ./api && npm run check",
-    "check-frontend": "cd ./web && npm run check"
+    "check-frontend": "cd ./web && npm run check",
+    "run-backend:dev": "cd ./api && npm run start:dev",
+    "run-frontend:dev": "cd ./web && npm run dev"
   },
   "keywords": [],
   "author": "",
