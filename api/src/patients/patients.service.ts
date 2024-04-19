@@ -12,7 +12,7 @@ export class PatientsService {
     private patientsRepository: Repository<Patient>,
   ) {}
 
-  async create(createPatientDto: CreatePatientDto) {
+  create(createPatientDto: CreatePatientDto) {
     return this.patientsRepository.save(createPatientDto);
   }
 
