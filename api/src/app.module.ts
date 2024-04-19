@@ -4,6 +4,7 @@ import { PatientsModule } from './patients/patients.module';
 import { VaccinationRecordsModule } from './vaccination-records/vaccination-records.module';
 import { VaccinesModule } from './vaccines/vaccines.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { HealthcheckController } from './health-check/health-check.controller';
 
 @Module({
   imports: [
@@ -24,5 +25,6 @@ import { TypeOrmModule } from '@nestjs/typeorm';
     VaccinationRecordsModule,
     VaccinesModule,
   ],
+  controllers: [HealthcheckController],
 })
 export class AppModule {}
