@@ -14,6 +14,7 @@ jobs:
 
     env:
       API_URL: http://localhost:8000
+      APP_PORT: 8000
 
     steps:
       - uses: actions/checkout@v4
