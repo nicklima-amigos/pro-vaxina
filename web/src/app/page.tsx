@@ -77,28 +77,28 @@ export default function Home() {
   ];
   return (
     <>
-      <Header title="Welcome to Pro-Vaxina">
+      <Header title="Bem-vindo ao Pro-Vaxina">
         <Link href="/patients">
-          <Button variant="default">Patients</Button>
+          <Button variant="default">Pacientes</Button>
         </Link>
         <Link href="/vaccines">
-          <Button variant="secondary">Vaccines</Button>
+          <Button variant="secondary">Vacinas</Button>
         </Link>
         {/* TODO: Route to our form to record a new vaccination-record */}
         <Link href="/record-vaccine">
           <Button variant="red" className="animate-pulse">
-            VACCINE NOW!
+            VACINAR AGORA!
           </Button>
         </Link>
       </Header>
       <Table>
-        <TableCaption>A list of your recent vaccinations.</TableCaption>
+        <TableCaption>Lista de vacinação</TableCaption>
         <TableHeader>
           <TableRow>
-            <TableHead>Identification</TableHead>
-            <TableHead>Patient</TableHead>
-            <TableHead>Vaccine</TableHead>
-            <TableHead>RecordedAt</TableHead>
+            <TableHead>Identificação</TableHead>
+            <TableHead>Paciente</TableHead>
+            <TableHead>Vacina</TableHead>
+            <TableHead>Vacinado em</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>

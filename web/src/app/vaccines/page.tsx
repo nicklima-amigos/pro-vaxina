@@ -102,20 +102,20 @@ export default function Vaccines() {
         {/* TODO: Route to our form to register a new vaccine inside our system */}
 
         <Link href="/register-patient">
-          <Button variant="default">Register</Button>
+          <Button variant="default">Registrar</Button>
         </Link>
         <Link href="/">
-          <Button variant="destructive">Go Back</Button>
+          <Button variant="destructive">Voltar</Button>
         </Link>
       </Header>
       <Table>
-        <TableCaption>A list of our active vaccines.</TableCaption>
+        <TableCaption>Lista das vacinas.</TableCaption>
         <TableHeader>
           <TableRow>
-            <TableHead>Identification</TableHead>
-            <TableHead>Model</TableHead>
-            <TableHead>Manufacturer</TableHead>
-            <TableHead>Illness</TableHead>
+            <TableHead>Identificação</TableHead>
+            <TableHead>Modelo</TableHead>
+            <TableHead>Fabricante</TableHead>
+            <TableHead>Doença</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
