@@ -20,13 +20,22 @@ const RequestMethod = {
 } as const;
 
 export interface RequestParams {
-  headers: Record<string, string>;
+  headers?: Record<string, string>;
   endpoint: string;
-  body: object;
 }
 
-interface RequestParamsWithMethod extends RequestParams {
+export interface RequestWithBodyParams extends RequestParams {
+  body?: object;
+}
+
+export interface RequestParamsWithMethod extends RequestWithBodyParams {
   method: keyof typeof RequestMethod;
+}
+
+export interface ApiResponse<T> {
+  status: number;
+  data: T;
+  headers: Headers;
 }
 
 export class RequestError extends Error {
@@ -38,16 +47,17 @@ export class RequestError extends Error {
   }
 }
 
-const request = async ({
-  method,
-  headers,
+const request = async <T>({
+  method = RequestMethod.GET,
+  headers = {},
   endpoint,
   body,
-}: RequestParamsWithMethod) => {
+}: RequestParamsWithMethod): Promise<ApiResponse<T>> => {
   const response = await fetch(addApiUrlPrefix(endpoint), {
     method,
     body: JSON.stringify(body),
     headers,
+    cache: 'no-store',
   });
 
   if (!response.ok) {
@@ -62,26 +72,26 @@ const request = async ({
   };
 };
 
-const get = (params: RequestParams) => {
-  return request({ method: RequestMethod.GET, ...params });
+const get = <T>(params: RequestParams) => {
+  return request<T>({ method: RequestMethod.GET, ...params });
 };
 
-const post = (params: RequestParams) => {
-  return request({ method: RequestMethod.POST, ...params });
+const post = <T>(params: RequestWithBodyParams) => {
+  return request<T>({ method: RequestMethod.POST, ...params });
 };
 
-const put = (params: RequestParams) => {
-  return request({ method: RequestMethod.PUT, ...params });
+const put = <T>(params: RequestWithBodyParams) => {
+  return request<T>({ method: RequestMethod.PUT, ...params });
 };
 
-const patch = (params: RequestParams) => {
-  return request({ method: RequestMethod.PATCH, ...params });
+const patch = <T>(params: RequestWithBodyParams) => {
+  return request<T>({ method: RequestMethod.PATCH, ...params });
 };
 
 // JavaScript doesn't let us name this function as "delete", so we declare it as
 // "remove" and rename the object's method when exporting below.
-const remove = (params: RequestParams) => {
-  return request({ method: RequestMethod.DELETE, ...params });
+const remove = <T>(params: RequestParams) => {
+  return request<T>({ method: RequestMethod.DELETE, ...params });
 };
 
 export const apiClient = {

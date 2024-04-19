@@ -21,7 +21,9 @@ export class VaccinationRecordsService {
   }
 
   findAll() {
-    return this.vaccinationRecordsRepository.find();
+    return this.vaccinationRecordsRepository.find({
+      relations: ['vaccine', 'patient'],
+    });
   }
 
   findOne(id: number) {
