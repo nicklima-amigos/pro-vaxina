@@ -1,5 +1,6 @@
 import { cn } from '@/lib/utils';
 import React from 'react';
+import Link from 'next/link';
 
 interface HeaderProps {
   className?: string;
@@ -15,7 +16,9 @@ const Header = React.forwardRef<HTMLDivElement, HeaderProps>(
   ({ className, title, children }, ref) => {
     return (
       <div className={cn(styles.header, className)} ref={ref}>
-        <h1>{title}</h1>
+        <Link href="/">
+          <h1>{title}</h1>
+        </Link>
         <div className={cn(styles.buttonContainer)}>{children}</div>
       </div>
     );
