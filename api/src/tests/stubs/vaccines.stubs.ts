@@ -7,4 +7,5 @@ export const vaccineItem: Vaccine = {
   updatedAt: new Date(),
   illness: 'COVID-19',
   manufacturer: 'AstraZeneca',
+  expirationDate: new Date('2050-01-01'),
 };

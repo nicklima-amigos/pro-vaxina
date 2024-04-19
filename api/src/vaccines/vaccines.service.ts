@@ -13,7 +13,7 @@ export class VaccinesService {
   ) {}
 
   create(createVaccineDto: CreateVaccineDto) {
-    return this.vaccinesRepository.create(createVaccineDto);
+    return this.vaccinesRepository.save(createVaccineDto);
   }
 
   findAll() {

@@ -16,6 +16,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
           type: 'better-sqlite3',
           database: 'db.sqlite3',
           synchronize: nodeEnv !== 'production',
+          autoLoadEntities: true,
         };
       },
     }),

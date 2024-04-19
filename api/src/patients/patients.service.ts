@@ -12,8 +12,8 @@ export class PatientsService {
     private patientsRepository: Repository<Patient>,
   ) {}
 
-  create(createPatientDto: CreatePatientDto) {
-    return this.patientsRepository.create(createPatientDto);
+  async create(createPatientDto: CreatePatientDto) {
+    return this.patientsRepository.save(createPatientDto);
   }
 
   findAll() {
