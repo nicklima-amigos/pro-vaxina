@@ -10,35 +10,8 @@ import {
   TableRow,
 } from '@/components/table';
 import { apiClient } from '@/services/api-client';
+import { VaccinationRecord } from '@/types/api';
 import Link from 'next/link';
-
-export interface Patient {
-  id: number;
-  createtAt: string;
-  updatedAt: string;
-  fullName: string;
-  cpf: string;
-  birthstring: Date;
-}
-
-export interface Vaccine {
-  id: number;
-  createdAt: string;
-  updatedAt: string;
-  model: string;
-  manufacturer: string;
-  illness: string;
-  expirationstring: string;
-}
-
-export interface VaccinationRecord {
-  id: number;
-  createdAt: string;
-  updatedAt: string;
-  applierName: string;
-  vaccine: Vaccine;
-  patient: Patient;
-}
 
 export default async function Home() {
   const { data } = await apiClient.get<VaccinationRecord[]>({
