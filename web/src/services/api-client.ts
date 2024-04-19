@@ -48,8 +48,8 @@ export class RequestError extends Error {
 }
 
 const request = async <T>({
-  method = RequestMethod.GET,
   headers = {},
+  method,
   endpoint,
   body,
 }: RequestParamsWithMethod): Promise<ApiResponse<T>> => {
