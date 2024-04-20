@@ -107,24 +107,24 @@ export default function Vaccines() {
   ];
   return (
     <>
-      <Header title="Patients">
+      <Header title="Pacientes">
         {/* TODO: Route to our form to register a new patient inside our system */}
         <Link href="/register-patient">
-          <Button variant="default">Register</Button>
+          <Button variant="default">Registrar</Button>
         </Link>
         <Link href="/">
-          <Button variant="destructive">Go Back</Button>
+          <Button variant="destructive">Voltar</Button>
         </Link>
       </Header>
       <Table>
-        <TableCaption>A list of our active patients.</TableCaption>
+        <TableCaption>Lista de pacientes.</TableCaption>
         <TableHeader>
           <TableRow>
-            <TableHead>Identification</TableHead>
-            <TableHead>Patient</TableHead>
-            <TableHead>Vaccine</TableHead>
-            <TableHead>RecordedAt</TableHead>
-            <TableHead>Action</TableHead>
+            <TableHead>Identificação</TableHead>
+            <TableHead>Paciente</TableHead>
+            <TableHead>Vacina</TableHead>
+            <TableHead>Vacinado em</TableHead>
+            <TableHead>Ação</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -138,7 +138,7 @@ export default function Vaccines() {
               <TableCell>
                 {/* TODO: patient records page, similar to this page*/}
                 <Link href="/patient-records">
-                  <Button variant="secondary">Records</Button>
+                  <Button variant="secondary">Registros</Button>
                 </Link>
               </TableCell>
             </TableRow>
