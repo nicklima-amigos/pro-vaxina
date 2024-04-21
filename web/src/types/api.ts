@@ -13,7 +13,7 @@ export interface Vaccine extends ApiEntity {
   model: string;
   manufacturer: string;
   illness: string;
-  expiration: string;
+  expirationDate: string;
 }
 
 export interface VaccinationRecord extends ApiEntity {

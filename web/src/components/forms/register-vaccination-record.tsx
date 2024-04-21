@@ -6,6 +6,8 @@ import { Patient, Vaccine } from '@/types/api';
 import { SelectWithLabel } from '../ui/select';
 import { Button } from '../button';
 import { apiClient } from '@/services';
+import { createVaccinationRecord } from './actions/vaccination-records';
+import { useRouter } from 'next/navigation';
 
 export interface VaccinationRecordFormFields {
   applierName: string;
@@ -25,6 +27,8 @@ export const RegisterVaccinationRecordForm = () => {
   const [vaccinationRecordFormState, setVaccinationRecordFormState] = useState(
     vaccinationRecordFormInitialState
   );
+
+  const router = useRouter();
 
   useEffect(() => {
     const fetchPatientsAndVaccines = async () => {
@@ -46,9 +50,10 @@ export const RegisterVaccinationRecordForm = () => {
   return (
     <form
       action=""
-      onSubmit={(event) => {
+      onSubmit={async (event) => {
         event.preventDefault();
-        console.log({ vaccinationRecordFormState });
+        await createVaccinationRecord(vaccinationRecordFormState);
+        router.push('/');
       }}
     >
       <InputWithLabel

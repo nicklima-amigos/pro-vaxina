@@ -44,6 +44,7 @@ export const RegisterVaccineForm: FC = () => {
             manufacturer: target.value,
           })
         }
+        data-testid={'manufacturer'}
       />
 
       <InputWithLabel
@@ -54,6 +55,7 @@ export const RegisterVaccineForm: FC = () => {
             model: target.value,
           })
         }
+        data-testid="model"
       />
 
       <InputWithLabel
@@ -64,6 +66,7 @@ export const RegisterVaccineForm: FC = () => {
             illness: target.value,
           })
         }
+        data-testid={'illness'}
       />
 
       <InputWithLabel
@@ -75,8 +78,9 @@ export const RegisterVaccineForm: FC = () => {
             expirationDate: target.value,
           })
         }
+        data-testid={'expirationDate'}
       />
-      <Button>Cadastrar</Button>
+      <Button data-testid={'submitBtn'}>Cadastrar</Button>
     </form>
   );
 };
