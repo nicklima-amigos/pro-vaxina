@@ -20,7 +20,7 @@ export default async function Vaccines() {
     <>
       <Header title="Patients">
         <Link href="/register/patients">
-          <Button variant="default">Register</Button>
+          <Button variant="default">Registrar</Button>
         </Link>
         <Link href="/">
           <Button variant="destructive">Voltar</Button>
