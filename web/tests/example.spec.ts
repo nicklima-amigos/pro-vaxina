@@ -5,5 +5,5 @@ test('has title', async ({ page }) => {
 
   const header = page.locator('h3');
 
-  await expect(header).toContainText('Welcome to Pro-Vaxina');
+  await expect(header).toContainText('Bem-vindo ao Pro-Vaxina');
 });
