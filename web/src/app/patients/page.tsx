@@ -32,7 +32,7 @@ export default async function Vaccines() {
           <TableRow>
             <TableHead>Identificação</TableHead>
             <TableHead>Paciente</TableHead>
-            <TableHead>Vacina</TableHead>
+            <TableHead>CPF</TableHead>
             <TableHead>Vacinado em</TableHead>
             <TableHead>Ação</TableHead>
           </TableRow>

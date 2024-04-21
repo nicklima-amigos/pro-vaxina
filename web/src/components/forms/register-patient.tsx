@@ -41,6 +41,7 @@ export const RegisterPatientForm: FC = () => {
             fullName: target.value,
           })
         }
+        data-testid="fullName"
       />
 
       <InputWithLabel
@@ -48,6 +49,7 @@ export const RegisterPatientForm: FC = () => {
         onChange={({ target }) =>
           setPatientFormState({ ...patientFormState, cpf: target.value })
         }
+        data-testid="cpf"
       />
 
       <InputWithLabel
@@ -56,9 +58,10 @@ export const RegisterPatientForm: FC = () => {
         onChange={({ target }) =>
           setPatientFormState({ ...patientFormState, birthDate: target.value })
         }
+        data-testid="birthDate"
       />
 
-      <Button>Cadastrar</Button>
+      <Button data-testid="submitBtn">Cadastrar</Button>
     </form>
   );
 };

@@ -28,7 +28,7 @@ export default async function Home() {
           <Button variant="secondary">Vacinas</Button>
         </Link>
         {/* TODO: Route to our form to record a new vaccination-record */}
-        <Link href="/record-vaccine">
+        <Link href="/register/records">
           <Button variant="red" className="animate-pulse">
             VACINAR AGORA!
           </Button>
