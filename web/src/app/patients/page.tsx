@@ -23,18 +23,18 @@ export default async function Vaccines() {
           <Button variant="default">Register</Button>
         </Link>
         <Link href="/">
-          <Button variant="destructive">Go Back</Button>
+          <Button variant="destructive">Voltar</Button>
         </Link>
       </Header>
       <Table>
-        <TableCaption>A list of our active patients.</TableCaption>
+        <TableCaption>Lista de pacientes.</TableCaption>
         <TableHeader>
           <TableRow>
-            <TableHead>Identification</TableHead>
-            <TableHead>Patient</TableHead>
-            <TableHead>Vaccine</TableHead>
-            <TableHead>RecordedAt</TableHead>
-            <TableHead>Action</TableHead>
+            <TableHead>Identificação</TableHead>
+            <TableHead>Paciente</TableHead>
+            <TableHead>Vacina</TableHead>
+            <TableHead>Vacinado em</TableHead>
+            <TableHead>Ação</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -46,7 +46,7 @@ export default async function Vaccines() {
               <TableCell>{new Date(data.birthDate).toUTCString()}</TableCell>
               <TableCell>
                 <Link href="/patient-records">
-                  <Button variant="secondary">Records</Button>
+                  <Button variant="secondary">Registros</Button>
                 </Link>
               </TableCell>
             </TableRow>

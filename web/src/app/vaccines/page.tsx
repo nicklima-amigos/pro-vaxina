@@ -25,17 +25,17 @@ export default async function Vaccines() {
           <Button variant="default">Register</Button>
         </Link>
         <Link href="/">
-          <Button variant="destructive">Go Back</Button>
+          <Button variant="destructive">Voltar</Button>
         </Link>
       </Header>
       <Table>
-        <TableCaption>A list of our active vaccines.</TableCaption>
+        <TableCaption>Lista de vacinas.</TableCaption>
         <TableHeader>
           <TableRow>
-            <TableHead>Identification</TableHead>
-            <TableHead>Model</TableHead>
-            <TableHead>Manufacturer</TableHead>
-            <TableHead>Illness</TableHead>
+            <TableHead>Identificação</TableHead>
+            <TableHead>Modelo</TableHead>
+            <TableHead>Fabricante</TableHead>
+            <TableHead>Doença</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
