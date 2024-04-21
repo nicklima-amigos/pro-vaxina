@@ -9,7 +9,7 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/table';
-import { apiClient } from '@/services/api-client';
+import { apiClient } from '@/services';
 import { VaccinationRecord } from '@/types/api';
 import Link from 'next/link';
 
@@ -45,15 +45,13 @@ export default async function Home() {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {/* TODO: fetch vaccination-records from our api */}
           {data.map((row) => {
-            console.log({ row });
             return (
               <TableRow key={row.id}>
                 <TableCell className="font-medium">{row.id}</TableCell>
                 <TableCell>{row.patient.fullName}</TableCell>
                 <TableCell>{row.vaccine.model}</TableCell>
-                <TableCell>{row.createdAt}</TableCell>
+                <TableCell>{new Date(row.createdAt!).toUTCString()}</TableCell>
               </TableRow>
             );
           })}

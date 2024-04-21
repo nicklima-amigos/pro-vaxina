@@ -39,16 +39,13 @@ export interface ApiResponse<T> {
 }
 
 export class RequestError extends Error {
-  constructor(
-    public status: number,
-    message: string,
-  ) {
+  constructor(public status: number, message: string) {
     super(message);
   }
 }
 
 const request = async <T>({
-  headers = {},
+  headers,
   method,
   endpoint,
   body,
@@ -56,7 +53,7 @@ const request = async <T>({
   const response = await fetch(addApiUrlPrefix(endpoint), {
     method,
     body: JSON.stringify(body),
-    headers,
+    headers: { 'Content-Type': 'application/json', ...headers },
     cache: 'no-store',
   });
 
@@ -65,39 +62,33 @@ const request = async <T>({
     throw new RequestError(response.status, errorText);
   }
 
+  const responseJson = await response.json();
+
   return {
     status: response.status,
     headers: response.headers,
-    data: await response.json(),
+    data: responseJson as T,
   };
 };
 
-const get = <T>(params: RequestParams) => {
+export const get = <T>(params: RequestParams) => {
   return request<T>({ method: RequestMethod.GET, ...params });
 };
 
-const post = <T>(params: RequestWithBodyParams) => {
+export const post = <T>(params: RequestWithBodyParams) => {
   return request<T>({ method: RequestMethod.POST, ...params });
 };
 
-const put = <T>(params: RequestWithBodyParams) => {
+export const put = <T>(params: RequestWithBodyParams) => {
   return request<T>({ method: RequestMethod.PUT, ...params });
 };
 
-const patch = <T>(params: RequestWithBodyParams) => {
+export const patch = <T>(params: RequestWithBodyParams) => {
   return request<T>({ method: RequestMethod.PATCH, ...params });
 };
 
 // JavaScript doesn't let us name this function as "delete", so we declare it as
-// "remove" and rename the object's method when exporting below.
-const remove = <T>(params: RequestParams) => {
+// "remove" and rename the object's method when exporting in index.ts.
+export const remove = <T>(params: RequestParams) => {
   return request<T>({ method: RequestMethod.DELETE, ...params });
-};
-
-export const apiClient = {
-  get,
-  post,
-  put,
-  patch,
-  delete: remove,
 };
