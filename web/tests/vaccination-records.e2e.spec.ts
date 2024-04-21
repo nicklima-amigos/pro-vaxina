@@ -8,7 +8,7 @@ import dotenv from 'dotenv';
 dotenv.config({ path: '.env.test' });
 
 test.describe('VaccinationRecords', () => {
-  const randomCpf = () => {
+  const randomCPF = () => {
     const cpfChars = [];
     for (let i = 0; i < 11; i++) {
       cpfChars.push(Math.floor(Math.random() * 10));
@@ -19,7 +19,7 @@ test.describe('VaccinationRecords', () => {
   const createDependencies = async () => {
     const { data: patient } = await createPatient({
       birthDate: '1990-01-01',
-      cpf: randomCpf(),
+      cpf: randomCPF(),
       fullName: randomUUID(),
     });
 
@@ -54,9 +54,12 @@ test.describe('VaccinationRecords', () => {
     await page
       .locator('span')
       .getByText(vaccine.model, { exact: false })
-      .click();
+      .click({ force: true });
     await patientIdField.click();
-    await page.locator('span').getByText(patient.cpf, { exact: false }).click();
+    await page
+      .locator('span')
+      .getByText(patient.cpf, { exact: false })
+      .click({ force: true });
     await submitBtn.click();
 
     await page.waitForSelector('table');
