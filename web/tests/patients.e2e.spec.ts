@@ -28,10 +28,10 @@ test.describe('Patients', () => {
   test('should create a patient', async ({ page }) => {
     await page.goto('/register/patients');
 
-    const fullNameInput = page.getByTestId('fullName');
-    const cpfInput = page.getByTestId('cpf');
-    const birthDateInput = page.getByTestId('birthDate');
-    const submitBtn = page.getByTestId('submitBtn');
+    const fullNameInput = page.locator('#fullName');
+    const cpfInput = page.locator('#cpf');
+    const birthDateInput = page.locator('#birthDate');
+    const submitBtn = page.locator('#submitBtn');
 
     const randomCpf = randomUUID().split('').slice(0, 11).join('');
 

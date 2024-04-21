@@ -29,11 +29,11 @@ test.describe('Vaccines', () => {
   test('should create a vaccine', async ({ page }) => {
     await page.goto('/register/vaccines');
 
-    const manufacturerInput = page.getByTestId('manufacturer');
-    const modelInput = page.getByTestId('model');
-    const illnessInput = page.getByTestId('illness');
-    const expirationDateInput = page.getByTestId('expirationDate');
-    const submitBtn = page.getByTestId('submitBtn');
+    const manufacturerInput = page.locator('#manufacturer');
+    const modelInput = page.locator('#model');
+    const illnessInput = page.locator('#illness');
+    const expirationDateInput = page.locator('#expirationDate');
+    const submitBtn = page.locator('#submitBtn');
 
     const vaccineToCreate: Vaccine = {
       manufacturer: 'TestManufacturer',

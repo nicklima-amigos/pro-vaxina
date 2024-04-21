@@ -1,6 +1,7 @@
 'use client';
 
 import * as SelectPrimitive from '@radix-ui/react-select';
+import { SelectProps } from '@radix-ui/react-select';
 import { Check, ChevronDown, ChevronUp } from 'lucide-react';
 import * as React from 'react';
 
@@ -152,20 +153,22 @@ export interface SelectItem {
   label: string;
   value: string;
 }
-export interface SelectWithLabelProps extends SelectPrimitive.SelectProps {
+export interface SelectWithLabelProps extends SelectProps {
   label: string;
   selectPlaceholder?: string;
   items: SelectItem[];
+  id?: string;
 }
 
 const SelectWithLabel: FC<SelectWithLabelProps> = ({
   selectPlaceholder = 'Escolha um valor...',
   items,
   label,
+  id,
   ...props
 }) => {
   return (
-    <div>
+    <div id={id}>
       <Label>{label}</Label>
       <Select {...props}>
         <SelectTrigger>

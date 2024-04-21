@@ -22,7 +22,7 @@ const vaccineFormInitialState: VaccineFormFields = {
 
 export const RegisterVaccineForm: FC = () => {
   const [vaccineFormState, setVaccineFormState] = useState<VaccineFormFields>(
-    vaccineFormInitialState,
+    vaccineFormInitialState
   );
   const router = useRouter();
 
@@ -44,7 +44,7 @@ export const RegisterVaccineForm: FC = () => {
             manufacturer: target.value,
           })
         }
-        data-testid={'manufacturer'}
+        id={'manufacturer'}
       />
 
       <InputWithLabel
@@ -55,7 +55,7 @@ export const RegisterVaccineForm: FC = () => {
             model: target.value,
           })
         }
-        data-testid="model"
+        id="model"
       />
 
       <InputWithLabel
@@ -66,7 +66,7 @@ export const RegisterVaccineForm: FC = () => {
             illness: target.value,
           })
         }
-        data-testid={'illness'}
+        id={'illness'}
       />
 
       <InputWithLabel
@@ -78,9 +78,9 @@ export const RegisterVaccineForm: FC = () => {
             expirationDate: target.value,
           })
         }
-        data-testid={'expirationDate'}
+        id={'expirationDate'}
       />
-      <Button data-testid={'submitBtn'}>Cadastrar</Button>
+      <Button id={'submitBtn'}>Cadastrar</Button>
     </form>
   );
 };

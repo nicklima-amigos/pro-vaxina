@@ -20,7 +20,7 @@ const patientFormInitialState: PatientFormFields = {
 
 export const RegisterPatientForm: FC = () => {
   const [patientFormState, setPatientFormState] = useState(
-    patientFormInitialState,
+    patientFormInitialState
   );
   const router = useRouter();
 
@@ -41,7 +41,7 @@ export const RegisterPatientForm: FC = () => {
             fullName: target.value,
           })
         }
-        data-testid="fullName"
+        id="fullName"
       />
 
       <InputWithLabel
@@ -49,7 +49,7 @@ export const RegisterPatientForm: FC = () => {
         onChange={({ target }) =>
           setPatientFormState({ ...patientFormState, cpf: target.value })
         }
-        data-testid="cpf"
+        id="cpf"
       />
 
       <InputWithLabel
@@ -58,10 +58,10 @@ export const RegisterPatientForm: FC = () => {
         onChange={({ target }) =>
           setPatientFormState({ ...patientFormState, birthDate: target.value })
         }
-        data-testid="birthDate"
+        id="birthDate"
       />
 
-      <Button data-testid="submitBtn">Cadastrar</Button>
+      <Button id="submitBtn">Cadastrar</Button>
     </form>
   );
 };

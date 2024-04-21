@@ -64,6 +64,7 @@ export const RegisterVaccinationRecordForm = () => {
             applierName: target.value,
           })
         }
+        id="applierName"
       />
 
       <SelectWithLabel
@@ -78,6 +79,7 @@ export const RegisterVaccinationRecordForm = () => {
             vaccineId: value,
           })
         }
+        id="vaccineId"
       />
 
       <SelectWithLabel
@@ -92,9 +94,10 @@ export const RegisterVaccinationRecordForm = () => {
             patientId: value,
           })
         }
+        id="patientId"
       />
 
-      <Button>Cadastrar</Button>
+      <Button id="submitBtn">Cadastrar</Button>
     </form>
   );
 };
