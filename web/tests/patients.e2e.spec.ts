@@ -40,7 +40,7 @@ test.describe('Patients', () => {
     await birthDateInput.fill('2000-01-01');
     await submitBtn.click();
 
-    await page.waitForLoadState('networkidle');
+    await page.waitForSelector('table');
 
     expect(page.url()).toBe('http://127.0.0.1:3000/patients');
 
