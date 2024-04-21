@@ -17,8 +17,9 @@ test.describe('Patients', () => {
     await page.goto('/patients');
 
     const header = page.locator('h3');
+    const homeButton = page.getByText('Home');
     await expect(header).toContainText('Patients');
-    await header.click();
+    await homeButton.click();
     await expect(header).toContainText('Pro-Vaxina');
     expect(page.url()).toBe('http://127.0.0.1:3000/');
   });
