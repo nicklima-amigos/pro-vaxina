@@ -15,29 +15,17 @@ export default defineConfig({
   projects: [
     {
       name: 'chromium',
-      use: {
-        ...devices['Desktop Chrome'],
-        deviceScaleFactor: undefined,
-        viewport: null,
-      },
+      use: { ...devices['Desktop Chrome'] },
     },
 
     {
       name: 'firefox',
-      use: {
-        ...devices['Desktop Firefox'],
-        deviceScaleFactor: undefined,
-        viewport: null,
-      },
+      use: { ...devices['Desktop Firefox'] },
     },
 
     {
       name: 'webkit',
-      use: {
-        ...devices['Desktop Safari'],
-        deviceScaleFactor: undefined,
-        viewport: null,
-      },
+      use: { ...devices['Desktop Safari'] },
     },
   ],
   webServer: {

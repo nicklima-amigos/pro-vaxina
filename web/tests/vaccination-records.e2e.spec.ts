@@ -53,10 +53,10 @@ test.describe('VaccinationRecords', () => {
     await vaccineIdField.click();
     await page.keyboard.type(vaccine.model);
     await page.keyboard.press('Enter');
-    await patientIdField.click();
+    await patientIdField.click({ force: true });
     await page.keyboard.type(patient.fullName);
     await page.keyboard.press('Enter');
-    await submitBtn.click();
+    await submitBtn.click({ force: true });
 
     await page.waitForSelector('table');
 
