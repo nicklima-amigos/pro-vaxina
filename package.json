@@ -11,7 +11,7 @@
     "prepare": "husky",
     "lint-backend": "cd ./api && npm run lint",
     "lint-frontend": "cd ./web && npm run lint",
-    "test": "npm run test-backend && npm run backend:ci && npm run wait-for-api && npm run test-e2e",
+    "test": "npm run test-backend && npm run database:seed && npm run backend:ci && npm run wait-for-api && npm run test-e2e",
     "check": "npm run check-backend && npm run check-frontend",
     "check-backend": "cd ./api && npm run check",
     "check-frontend": "cd ./web && npm run check",

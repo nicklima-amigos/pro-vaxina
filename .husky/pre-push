@@ -1,6 +1,2 @@
 npm run check
-npm run database:seed
-npm run backend:ci &
-SERVER_PID=$!
 npm run test
-kill $SERVER_PID
