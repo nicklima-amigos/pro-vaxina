@@ -30,6 +30,9 @@ jobs:
         working-directory: ./web
         run: npx playwright install --with-deps
 
+      - name: Seed database
+        run: npm run database:seed
+
       - name: Start Api
         run: npm run backend:ci
 
