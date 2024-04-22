@@ -64,6 +64,7 @@ export const RegisterVaccinationRecordForm = () => {
             applierName: target.value,
           })
         }
+        className="mb-4"
         id="applierName"
       />
 
@@ -79,6 +80,7 @@ export const RegisterVaccinationRecordForm = () => {
             vaccineId: value,
           })
         }
+        className="mb-4"
         id="vaccineId"
       />
 
@@ -94,6 +96,7 @@ export const RegisterVaccinationRecordForm = () => {
             patientId: value,
           })
         }
+        className="mb-4"
         id="patientId"
       />
 
