@@ -53,15 +53,18 @@ test.describe('VaccinationRecords', () => {
     await vaccineIdField.click();
     await page.keyboard.type(vaccine.model);
     await page.keyboard.press('Enter');
-    await patientIdField.click({ force: true });
+
+    await patientIdField.click();
     await page.keyboard.type(patient.fullName);
     await page.keyboard.press('Enter');
-    await submitBtn.click({ force: true });
 
-    await page.waitForSelector('table');
+    await submitBtn.click();
+
+    await new Promise((resolve) => setTimeout(resolve, 2000));
 
     expect(page.url()).toBe('http://127.0.0.1:3000/');
 
+    await page.waitForSelector('table');
     const table = page.locator('table');
 
     const tableInnerHtml = await table.innerHTML();
