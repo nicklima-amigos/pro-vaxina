@@ -54,12 +54,9 @@ test.describe('VaccinationRecords', () => {
     await page
       .locator('span')
       .getByText(vaccine.model, { exact: false })
-      .click({ force: true });
+      .click();
     await patientIdField.click();
-    await page
-      .locator('span')
-      .getByText(patient.cpf, { exact: false })
-      .click({ force: true });
+    await page.locator('span').getByText(patient.cpf, { exact: false }).click();
     await submitBtn.click();
 
     await page.waitForSelector('table');
