@@ -3,9 +3,6 @@ import { createVaccine } from '@/actions/vaccines';
 import { VaccinationRecordFormFields } from '@/components/forms/register-vaccination-record';
 import { test, expect } from '@playwright/test';
 import { randomUUID } from 'crypto';
-import dotenv from 'dotenv';
-
-dotenv.config({ path: '.env.test' });
 
 test.describe('VaccinationRecords', () => {
   const randomCPF = () => {

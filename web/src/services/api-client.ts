@@ -39,7 +39,10 @@ export interface ApiResponse<T> {
 }
 
 export class RequestError extends Error {
-  constructor(public status: number, message: string) {
+  constructor(
+    public status: number,
+    message: string,
+  ) {
     super(message);
   }
 }
