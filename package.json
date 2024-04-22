@@ -16,7 +16,7 @@
     "check-backend": "cd ./api && npm run check",
     "check-frontend": "cd ./web && npm run check",
     "backend:dev": "cd ./api && npm run start:dev",
-    "backend:ci": "cd ./api && npm run start >/dev/null 2>&1 &",
+    "backend:ci": "cd ./api && npm run start ",
     "frontend:dev": "cd ./web && npm run dev",
     "test-backend": "cd ./api && npm run test",
     "wait-for-api": "wait-on http://localhost:8000",
