@@ -19,7 +19,6 @@ export default defineConfig({
         ...devices['Desktop Chrome'],
         deviceScaleFactor: undefined,
         viewport: null,
-        launchOptions: { args: ['--start-maximized'] },
       },
     },
 
@@ -29,7 +28,6 @@ export default defineConfig({
         ...devices['Desktop Firefox'],
         deviceScaleFactor: undefined,
         viewport: null,
-        launchOptions: { args: ['--start-maximized'] },
       },
     },
 
@@ -39,7 +37,6 @@ export default defineConfig({
         ...devices['Desktop Safari'],
         deviceScaleFactor: undefined,
         viewport: null,
-        launchOptions: { args: ['--start-maximized'] },
       },
     },
   ],
