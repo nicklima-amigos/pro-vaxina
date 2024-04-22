@@ -3,7 +3,7 @@
 import { FC, useState } from 'react';
 import { InputWithLabel } from '../ui/input';
 import { Button } from '../button';
-import { createVaccine } from './actions/vaccines';
+import { createVaccine } from '../../actions/vaccines';
 import { useRouter } from 'next/navigation';
 
 export interface VaccineFormFields {
@@ -22,7 +22,7 @@ const vaccineFormInitialState: VaccineFormFields = {
 
 export const RegisterVaccineForm: FC = () => {
   const [vaccineFormState, setVaccineFormState] = useState<VaccineFormFields>(
-    vaccineFormInitialState
+    vaccineFormInitialState,
   );
   const router = useRouter();
 

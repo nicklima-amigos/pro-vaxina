@@ -6,7 +6,7 @@ import { Patient, Vaccine } from '@/types/api';
 import { SelectWithLabel } from '../ui/select';
 import { Button } from '../button';
 import { apiClient } from '@/services';
-import { createVaccinationRecord } from './actions/vaccination-records';
+import { createVaccinationRecord } from '../../actions/vaccination-records';
 import { useRouter } from 'next/navigation';
 
 export interface VaccinationRecordFormFields {
@@ -25,7 +25,7 @@ export const RegisterVaccinationRecordForm = () => {
   const [availablePatients, setAvailablePatients] = useState<Patient[]>([]);
   const [availableVaccines, setAvailableVaccines] = useState<Vaccine[]>([]);
   const [vaccinationRecordFormState, setVaccinationRecordFormState] = useState(
-    vaccinationRecordFormInitialState
+    vaccinationRecordFormInitialState,
   );
 
   const router = useRouter();

@@ -3,7 +3,7 @@
 import { FC, useState } from 'react';
 import { InputWithLabel } from '../ui/input';
 import { Button } from '../button';
-import { createPatient } from './actions/patients';
+import { createPatient } from '../../actions/patients';
 import { useRouter } from 'next/navigation';
 
 export interface PatientFormFields {
@@ -20,13 +20,12 @@ const patientFormInitialState: PatientFormFields = {
 
 export const RegisterPatientForm: FC = () => {
   const [patientFormState, setPatientFormState] = useState(
-    patientFormInitialState
+    patientFormInitialState,
   );
   const router = useRouter();
 
   return (
     <form
-      action=""
       onSubmit={async (event) => {
         event.preventDefault();
         await createPatient(patientFormState);

@@ -1,5 +1,5 @@
-import { createPatient } from '@/components/forms/actions/patients';
-import { createVaccine } from '@/components/forms/actions/vaccines';
+import { createPatient } from '@/actions/patients';
+import { createVaccine } from '@/actions/vaccines';
 import { VaccinationRecordFormFields } from '@/components/forms/register-vaccination-record';
 import { test, expect } from '@playwright/test';
 import { randomUUID } from 'crypto';
@@ -51,12 +51,11 @@ test.describe('VaccinationRecords', () => {
 
     await applierNameField.fill(vaccinationRecordToCreate.applierName);
     await vaccineIdField.click();
-    await page
-      .locator('span')
-      .getByText(vaccine.model, { exact: false })
-      .click();
+    await page.keyboard.type(vaccine.model);
+    await page.keyboard.press('Enter');
     await patientIdField.click();
-    await page.locator('span').getByText(patient.cpf, { exact: false }).click();
+    await page.keyboard.type(patient.fullName);
+    await page.keyboard.press('Enter');
     await submitBtn.click();
 
     await page.waitForSelector('table');
