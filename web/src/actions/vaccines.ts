@@ -1,7 +1,7 @@
 'use server';
 
+import { VaccineFormFields } from '@/components/forms/register-vaccine';
 import { apiClient } from '@/services';
-import { VaccineFormFields } from '../register-vaccine';
 import { Vaccine } from '@/types/api';
 
 export const createVaccine = async (vaccine: VaccineFormFields) => {

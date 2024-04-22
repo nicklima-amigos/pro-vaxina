@@ -1,7 +1,7 @@
 'use server';
 
+import { PatientFormFields } from '@/components/forms/register-patient';
 import { apiClient } from '@/services';
-import { PatientFormFields } from '../register-patient';
 import { Patient } from '@/types/api';
 
 export const createPatient = async (patient: PatientFormFields) => {
