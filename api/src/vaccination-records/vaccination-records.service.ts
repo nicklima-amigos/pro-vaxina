@@ -26,6 +26,13 @@ export class VaccinationRecordsService {
     });
   }
 
+  findByPatient(id: number) {
+    return this.vaccinationRecordsRepository.find({
+      where: { patient: { id } },
+      relations: ['vaccine'],
+    });
+  }
+
   findOne(id: number) {
     return this.vaccinationRecordsRepository.findOne({
       where: { id },
