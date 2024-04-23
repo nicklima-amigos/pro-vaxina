@@ -6,6 +6,7 @@ import {
   Patch,
   Param,
   Delete,
+  ParseIntPipe,
 } from '@nestjs/common';
 import { VaccinesService } from './vaccines.service';
 import { CreateVaccineDto } from './dto/create-vaccine.dto';
@@ -26,17 +27,20 @@ export class VaccinesController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.vaccinesService.findOne(+id);
+  findOne(@Param('id', ParseIntPipe) id: number) {
+    return this.vaccinesService.findOne(id);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateVaccineDto: UpdateVaccineDto) {
-    return this.vaccinesService.update(+id, updateVaccineDto);
+  update(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() updateVaccineDto: UpdateVaccineDto,
+  ) {
+    return this.vaccinesService.update(id, updateVaccineDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.vaccinesService.remove(+id);
+  remove(@Param('id', ParseIntPipe) id: number) {
+    return this.vaccinesService.remove(id);
   }
 }

@@ -45,7 +45,7 @@ export default async function Vaccines() {
               <TableCell>{data.cpf}</TableCell>
               <TableCell>{new Date(data.birthDate).toUTCString()}</TableCell>
               <TableCell>
-                <Link href="/patient-records">
+                <Link href={`/patient-records/${data.id}`}>
                   <Button variant="secondary">Registros</Button>
                 </Link>
               </TableCell>
