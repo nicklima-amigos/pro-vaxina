@@ -13,9 +13,10 @@ import { HealthcheckController } from './health-check/health-check.controller';
       inject: [ConfigService],
       useFactory: (configService: ConfigService) => {
         const nodeEnv = configService.get<string>('NODE_ENV');
+        const database = configService.get<string>('DATABASE_NAME');
         return {
           type: 'better-sqlite3',
-          database: 'db.sqlite3',
+          database,
           synchronize: nodeEnv !== 'production',
           autoLoadEntities: true,
         };

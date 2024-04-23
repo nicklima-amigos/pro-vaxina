@@ -1,26 +1,22 @@
-export interface Patient {
-  id: number;
-  createtAt: string;
-  updatedAt: string;
+export interface ApiEntity {
+  id?: number;
+  createdAt?: string;
+  updatedAt?: string;
+}
+export interface Patient extends ApiEntity {
   fullName: string;
   cpf: string;
-  birthstring: Date;
+  birthDate: string;
 }
 
-export interface Vaccine {
-  id: number;
-  createdAt: string;
-  updatedAt: string;
+export interface Vaccine extends ApiEntity {
   model: string;
   manufacturer: string;
   illness: string;
-  expirationstring: string;
+  expirationDate: string;
 }
 
-export interface VaccinationRecord {
-  id: number;
-  createdAt: string;
-  updatedAt: string;
+export interface VaccinationRecord extends ApiEntity {
   applierName: string;
   vaccine: Vaccine;
   patient: Patient;
