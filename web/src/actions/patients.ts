@@ -11,3 +11,10 @@ export const createPatient = async (patient: PatientFormFields) => {
   });
   return response;
 };
+
+export const deletePatient = async (id: number) => {
+  const response = await apiClient.remove<Patient>({
+    endpoint: `/patients/${id}`,
+  });
+  return response;
+};

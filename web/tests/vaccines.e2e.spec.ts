@@ -1,7 +1,20 @@
+import { createVaccine, deleteVaccine } from '@/actions/vaccines';
 import { Vaccine } from '@/types/api';
 import test, { expect } from '@playwright/test';
+import { vaccinesFactory } from './factories/vaccines.factory';
 
 test.describe('Vaccines', () => {
+  let vaccineStub: Vaccine;
+
+  test.beforeAll(async () => {
+    const { data } = await createVaccine(vaccinesFactory());
+    vaccineStub = data;
+  });
+
+  test.afterAll(async () => {
+    await deleteVaccine(vaccineStub.id!);
+  });
+
   test('should list vaccines', async ({ page }) => {
     await page.goto('/vaccines');
 

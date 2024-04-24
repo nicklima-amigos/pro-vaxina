@@ -1,7 +1,21 @@
 import test, { expect } from '@playwright/test';
 import { randomUUID } from 'crypto';
+import { patientsFactory } from './factories/patients.factory';
+import { Patient } from '@/types/api';
+import { createPatient, deletePatient } from '@/actions/patients';
 
 test.describe('Patients', () => {
+  let patientStub: Patient;
+
+  test.beforeAll(async () => {
+    const { data } = await createPatient(patientsFactory());
+    patientStub = data;
+  });
+
+  test.afterAll(async () => {
+    await deletePatient(patientStub.id!);
+  });
+
   test('should list Patients', async ({ page }) => {
     await page.goto('/patients');
 
@@ -20,8 +34,10 @@ test.describe('Patients', () => {
     const header = page.locator('h3');
     const homeButton = page.getByText('Home');
     await expect(header).toContainText('Patients');
+
     await homeButton.click();
     await expect(header).toContainText('Pro-Vaxina');
+
     expect(page.url()).toBe('http://127.0.0.1:3000/');
   });
 
