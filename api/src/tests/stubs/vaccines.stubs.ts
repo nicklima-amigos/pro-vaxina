@@ -1,10 +1,9 @@
 import { Vaccine } from '@src/vaccines/entities/vaccine.entity';
+import {
+  createManyVaccines,
+  createVaccine,
+} from './factories/vaccines.factory';
 
-export const vaccineItem: Vaccine = {
-  id: 1,
-  model: 'AstraZeneca',
-  createdAt: new Date(),
-  updatedAt: new Date(),
-  illness: 'COVID-19',
-  manufacturer: 'AstraZeneca',
-};
+export const vaccineItem: Vaccine = createVaccine();
+
+export const vaccineItems: Vaccine[] = createManyVaccines({ quantity: 10 });

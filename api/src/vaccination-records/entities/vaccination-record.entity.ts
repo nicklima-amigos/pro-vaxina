@@ -1,4 +1,5 @@
 import {
+  Column,
   CreateDateColumn,
   Entity,
   ManyToOne,
@@ -14,14 +15,17 @@ export class VaccinationRecord {
   id: number;
 
   @CreateDateColumn()
-  createtAt: Date;
+  createdAt: Date;
 
   @UpdateDateColumn()
   updatedAt: Date;
 
-  @ManyToOne(() => Patient, (patient) => patient.records)
+  @ManyToOne(() => Patient, (patient) => patient.records, { nullable: false })
   patient: Patient;
 
-  @ManyToOne(() => Vaccine)
+  @ManyToOne(() => Vaccine, { nullable: false })
   vaccine: Vaccine;
+
+  @Column()
+  applierName: string;
 }

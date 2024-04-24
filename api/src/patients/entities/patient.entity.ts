@@ -14,7 +14,7 @@ export class Patient {
   id: number;
 
   @CreateDateColumn()
-  createtAt: Date;
+  createdAt: Date;
 
   @UpdateDateColumn()
   updatedAt: Date;

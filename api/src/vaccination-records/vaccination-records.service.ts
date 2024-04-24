@@ -12,16 +12,32 @@ export class VaccinationRecordsService {
     private vaccinationRecordsRepository: Repository<VaccinationRecord>,
   ) {}
 
-  create(createVaccinationRecordDto: CreateVaccinationRecordDto) {
-    return this.vaccinationRecordsRepository.save(createVaccinationRecordDto);
+  create({ applierName, vaccineId, patientId }: CreateVaccinationRecordDto) {
+    return this.vaccinationRecordsRepository.save({
+      applierName,
+      vaccine: { id: vaccineId },
+      patient: { id: patientId },
+    });
   }
 
   findAll() {
-    return this.vaccinationRecordsRepository.find();
+    return this.vaccinationRecordsRepository.find({
+      relations: ['vaccine', 'patient'],
+    });
+  }
+
+  findByPatient(id: number) {
+    return this.vaccinationRecordsRepository.find({
+      where: { patient: { id } },
+      relations: ['vaccine'],
+    });
   }
 
   findOne(id: number) {
-    return this.vaccinationRecordsRepository.findOne({ where: { id } });
+    return this.vaccinationRecordsRepository.findOne({
+      where: { id },
+      relations: ['vaccine', 'patient'],
+    });
   }
 
   update(id: number, updateVaccinationRecordDto: UpdateVaccinationRecordDto) {

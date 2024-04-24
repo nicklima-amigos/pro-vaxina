@@ -25,4 +25,7 @@ export class Vaccine {
 
   @Column()
   illness: string;
+
+  @Column()
+  expirationDate: Date;
 }

@@ -11,12 +11,17 @@
     "prepare": "husky",
     "lint-backend": "cd ./api && npm run lint",
     "lint-frontend": "cd ./web && npm run lint",
-    "test": "npm run test-backend && npm run test-e2e",
-    "test-backend": "cd ./api && npm run test",
-    "test-e2e": "cd ./web && npm run test:e2e",
+    "test": "npm run test-backend && npm run backend:ci && npm run wait-for-api && npm run test-e2e; npm run kill-api",
+    "kill-api": "lsof -t -i:8000 | xargs kill",
     "check": "npm run check-backend && npm run check-frontend",
     "check-backend": "cd ./api && npm run check",
-    "check-frontend": "cd ./web && npm run check"
+    "check-frontend": "cd ./web && npm run check",
+    "backend:dev": "cd ./api && npm run start:dev",
+    "backend:ci": "cd ./api && npm run start:ci",
+    "frontend:dev": "cd ./web && npm run dev",
+    "test-backend": "cd ./api && npm run test",
+    "wait-for-api": "wait-on http://localhost:8000",
+    "test-e2e": "cd ./web && npm run test:e2e"
   },
   "keywords": [],
   "author": "",
@@ -25,5 +30,8 @@
     "@commitlint/cli": "^19.2.1",
     "@commitlint/config-conventional": "^19.1.0",
     "husky": "^9.0.11"
+  },
+  "dependencies": {
+    "wait-on": "^7.2.0"
   }
 }
