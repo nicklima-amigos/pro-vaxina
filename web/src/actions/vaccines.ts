@@ -11,3 +11,10 @@ export const createVaccine = async (vaccine: VaccineFormFields) => {
   });
   return response;
 };
+
+export const deleteVaccine = async (id: number) => {
+  const response = await apiClient.remove<Vaccine>({
+    endpoint: `/vaccines/${id}`,
+  });
+  return response;
+};

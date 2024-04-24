@@ -20,8 +20,7 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
-    "commitlint": "commitlint --from=HEAD~1",
-    "database:seed": "ts-node -r tsconfig-paths/register ./src/tests/seeds/database.ts"
+    "commitlint": "commitlint --from=HEAD~1"
   },
   "dependencies": {
     "@nestjs/common": "^10.0.0",
@@ -41,6 +40,7 @@
   "devDependencies": {
     "@commitlint/cli": "^19.2.1",
     "@commitlint/config-conventional": "^19.1.0",
+    "@faker-js/faker": "^8.4.1",
     "@nestjs/cli": "^10.0.0",
     "@nestjs/schematics": "^10.0.0",
     "@nestjs/testing": "^10.0.0",
