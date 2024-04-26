@@ -90,8 +90,6 @@ export const patch = <T>(params: RequestWithBodyParams) => {
   return request<T>({ method: RequestMethod.PATCH, ...params });
 };
 
-// JavaScript doesn't let us name this function as "delete", so we declare it as
-// "remove" and rename the object's method when exporting in index.ts.
 export const remove = <T>(params: RequestParams) => {
   return request<T>({ method: RequestMethod.DELETE, ...params });
 };
