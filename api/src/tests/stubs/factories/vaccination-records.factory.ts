@@ -11,17 +11,16 @@ export interface CreateVaccinationRecordProps {
 }
 
 export const createVaccinationRecord = (
-  { patient, vaccine }: CreateVaccinationRecordProps = {
+  props: CreateVaccinationRecordProps = {
     patient: createPatient(),
     vaccine: createVaccine(),
   },
 ): VaccinationRecord => {
   return {
     id: faker.number.int(),
-    vaccine,
-    patient,
     applierName: faker.person.fullName(),
     createdAt: faker.date.recent(),
     updatedAt: faker.date.recent(),
+    ...props,
   };
 };
