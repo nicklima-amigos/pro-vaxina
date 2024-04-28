@@ -12,13 +12,3 @@ export const createPatient = (): Patient => {
     birthDate: faker.date.past({ years: 100 }),
   };
 };
-
-export const createManyPatients = ({ quantity }: { quantity: number }) => {
-  const patients: Patient[] = [];
-
-  for (let i = 0; i < quantity; i++) {
-    patients.push(createPatient());
-  }
-
-  return patients;
-};

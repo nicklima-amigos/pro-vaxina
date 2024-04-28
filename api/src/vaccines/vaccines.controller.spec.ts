@@ -1,10 +1,10 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { VaccinesController } from './vaccines.controller';
 import { VaccinesService } from './vaccines.service';
-import { vaccineItem } from '@src/tests/stubs/vaccines.stubs';
 import { repositoryMocks } from '@src/tests/mocks';
 import { Agent, agent } from 'supertest';
 import { HttpStatus } from '@nestjs/common';
+import { vaccineItems } from '@src/tests/stubs/vaccines.stubs';
 
 describe('VaccinesController', () => {
   let controller: VaccinesController;
@@ -32,7 +32,7 @@ describe('VaccinesController', () => {
 
   it('should find one vaccine', async () => {
     // arrange
-    repositoryMocks.vaccines.findOne.mockResolvedValue(vaccineItem);
+    repositoryMocks.vaccines.findOne.mockResolvedValue(vaccineItems[0]);
 
     //act
     const { body, status } = await request.get('/vaccines/1');
@@ -40,14 +40,14 @@ describe('VaccinesController', () => {
     //assert
     expect(status).toBe(HttpStatus.OK);
     expect(repositoryMocks.vaccines.findOne).toHaveBeenCalled();
-    expect(body.id).toBe(vaccineItem.id);
-    expect(body.model).toBe(vaccineItem.model);
-    expect(body.illness).toBe(vaccineItem.illness);
+    expect(body.id).toBe(vaccineItems[0].id);
+    expect(body.model).toBe(vaccineItems[0].model);
+    expect(body.illness).toBe(vaccineItems[0].illness);
   });
 
   it('should find many vaccines', async () => {
     //arrange
-    repositoryMocks.vaccines.find.mockResolvedValue([vaccineItem]);
+    repositoryMocks.vaccines.find.mockResolvedValue(vaccineItems);
 
     // act
     const {
@@ -58,8 +58,8 @@ describe('VaccinesController', () => {
     // assert
     expect(status).toBe(HttpStatus.OK);
     expect(repositoryMocks.vaccines.find).toHaveBeenCalled();
-    expect(firstVaccine.id).toBe(vaccineItem.id);
-    expect(firstVaccine.model).toBe(vaccineItem.model);
-    expect(firstVaccine.illness).toBe(vaccineItem.illness);
+    expect(firstVaccine.id).toBe(vaccineItems[0].id);
+    expect(firstVaccine.model).toBe(vaccineItems[0].model);
+    expect(firstVaccine.illness).toBe(vaccineItems[0].illness);
   });
 });

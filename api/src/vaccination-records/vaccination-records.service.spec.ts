@@ -1,9 +1,12 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { VaccinationRecordsService } from './vaccination-records.service';
 import { repositoryMocks } from '@src/tests/mocks';
-import { vaccinationRecords } from '@src/tests/mocks/repository.mocks';
 import { CreateVaccinationRecordDto } from './dto/create-vaccination-record.dto';
 import { UpdateVaccinationRecordDto } from './dto/update-vaccination-record.dto';
+import { vaccinationRecordItems } from '@src/tests/stubs/vaccination-records.stubs';
+import { patientItems } from '@src/tests/stubs/patients.stubs';
+import { vaccineItems } from '@src/tests/stubs/vaccines.stubs';
+import { VaccinationRecord } from './entities/vaccination-record.entity';
 
 describe('VaccinationRecordsService', () => {
   let service: VaccinationRecordsService;
@@ -22,17 +25,17 @@ describe('VaccinationRecordsService', () => {
 
   it('should return all records', async () => {
     repositoryMocks.vaccinationRecords.find.mockResolvedValue(
-      vaccinationRecords,
+      vaccinationRecordItems,
     );
 
     const record = await service.findAll();
 
-    expect(record).toEqual(vaccinationRecords);
+    expect(record).toEqual(vaccinationRecordItems);
   });
 
   it('should return a record by id', async () => {
     repositoryMocks.vaccinationRecords.findOne.mockResolvedValue(
-      vaccinationRecords[0],
+      vaccinationRecordItems[0],
     );
 
     const record = await service.findOne(1);
@@ -41,17 +44,26 @@ describe('VaccinationRecordsService', () => {
       relations: ['vaccine', 'patient'],
       where: { id: 1 },
     });
-    expect(record).toEqual(vaccinationRecords[0]);
+    expect(record).toEqual(vaccinationRecordItems[0]);
   });
 
   it('should create a vaccination record', async () => {
     const recordToCreate: CreateVaccinationRecordDto = {
-      patientId: 1,
-      vaccineId: 1,
+      patientId: patientItems[0].id,
+      vaccineId: vaccineItems[0].id,
       applierName: 'John Doe',
     };
 
-    repositoryMocks.vaccinationRecords.save.mockResolvedValue(recordToCreate);
+    const expectedRecord: VaccinationRecord = {
+      id: 1,
+      applierName: recordToCreate.applierName,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+      patient: patientItems[0],
+      vaccine: vaccineItems[0],
+    };
+
+    repositoryMocks.vaccinationRecords.save.mockResolvedValue(expectedRecord);
 
     const record = await service.create(recordToCreate);
 
@@ -60,18 +72,23 @@ describe('VaccinationRecordsService', () => {
       vaccine: { id: recordToCreate.vaccineId },
       applierName: recordToCreate.applierName,
     });
-
-    expect(record).toEqual(recordToCreate);
+    expect(record).toEqual(expectedRecord);
   });
 
   it('should update a record', async () => {
+    const existingRecord = vaccinationRecordItems[0];
     const recordToUpdate: UpdateVaccinationRecordDto = {
-      patientId: 1,
-      vaccineId: 1,
+      patientId: patientItems[0].id,
+      vaccineId: vaccineItems[0].id,
       applierName: 'John Doe',
     };
 
-    const expectedRecord = { ...recordToUpdate, id: 1 };
+    const expectedRecord: VaccinationRecord = {
+      ...existingRecord,
+      patient: { ...existingRecord.patient, id: recordToUpdate.patientId },
+      vaccine: { ...existingRecord.vaccine, id: recordToUpdate.vaccineId },
+      applierName: recordToUpdate.applierName,
+    };
 
     repositoryMocks.vaccinationRecords.save.mockResolvedValue(expectedRecord);
 
@@ -88,7 +105,15 @@ describe('VaccinationRecordsService', () => {
   });
 
   it('should delete a record', async () => {
-    await service.remove(1);
-    expect(true).toBe(true);
+    repositoryMocks.vaccinationRecords.delete.mockResolvedValue(
+      vaccinationRecordItems[0],
+    );
+
+    const deletedRecord = await service.remove(vaccinationRecordItems[0].id);
+
+    expect(repositoryMocks.vaccinationRecords.delete).toHaveBeenCalledWith({
+      id: vaccinationRecordItems[0].id,
+    });
+    expect(deletedRecord).toBe(vaccinationRecordItems[0]);
   });
 });
