@@ -13,7 +13,7 @@ export interface CreateVaccinationRecordProps {
 export const createVaccinationRecord = ({
   patient = createPatient(),
   vaccine = createVaccine(),
-}: CreateVaccinationRecordProps): VaccinationRecord => {
+}: CreateVaccinationRecordProps = {}): VaccinationRecord => {
   return {
     id: faker.number.int(),
     applierName: faker.person.fullName(),
