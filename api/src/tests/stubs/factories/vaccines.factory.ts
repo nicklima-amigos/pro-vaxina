@@ -12,13 +12,3 @@ export const createVaccine = (): Vaccine => {
     model: faker.lorem.word(),
   };
 };
-
-export const createManyVaccines = ({ quantity }: { quantity: number }) => {
-  const vaccines: Vaccine[] = [];
-
-  for (let i = 0; i < quantity; i++) {
-    vaccines.push(createVaccine());
-  }
-
-  return vaccines;
-};
