@@ -6,21 +6,20 @@ import { createPatient } from './patients.factory';
 import { createVaccine } from './vaccines.factory';
 
 export interface CreateVaccinationRecordProps {
-  patient: Patient;
-  vaccine: Vaccine;
+  patient?: Patient;
+  vaccine?: Vaccine;
 }
 
-export const createVaccinationRecord = (
-  props: CreateVaccinationRecordProps = {
-    patient: createPatient(),
-    vaccine: createVaccine(),
-  },
-): VaccinationRecord => {
+export const createVaccinationRecord = ({
+  patient = createPatient(),
+  vaccine = createVaccine(),
+}: CreateVaccinationRecordProps): VaccinationRecord => {
   return {
     id: faker.number.int(),
     applierName: faker.person.fullName(),
     createdAt: faker.date.recent(),
     updatedAt: faker.date.recent(),
-    ...props,
+    patient,
+    vaccine,
   };
 };
