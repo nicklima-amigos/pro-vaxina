@@ -78,7 +78,15 @@
       "^.+\\.(t|j)s$": "ts-jest"
     },
     "collectCoverageFrom": [
-      "**/*.(t|j)s"
+      "**/*.(t|j)s",
+      "!**/*.module.ts",
+      "!**/*.e2e-spec.ts",
+      "!**/.eslintrc.*",
+      "!**/main.ts"
+    ],
+    "coveragePathIgnorePatterns": [
+      "<rootDir>/node_modules",
+      "<rootDir>/dist"
     ],
     "coverageDirectory": "../coverage",
     "testEnvironment": "node"
