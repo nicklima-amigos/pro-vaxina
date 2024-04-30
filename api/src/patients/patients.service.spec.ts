@@ -1,7 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { PatientsService } from './patients.service';
 import { repositoryMocks } from '@src/tests/mocks';
-import { Repository } from 'typeorm';
 import { patientItems } from '@src/tests/stubs/patients.stubs';
 import { CreatePatientDto } from './dto/create-patient.dto';
 import { UpdatePatientDto } from './dto/update-patient.dto';
