@@ -31,31 +31,29 @@ describe('VaccinesController', () => {
   });
 
   it('should find one vaccine', async () => {
-    // arrange
     repositoryMocks.vaccines.findOne.mockResolvedValue(vaccineItems[0]);
 
-    //act
-    const { body, status } = await request.get('/vaccines/1');
+    const { body, status } = await request.get(
+      `/vaccines/${vaccineItems[0].id}`,
+    );
 
-    //assert
     expect(status).toBe(HttpStatus.OK);
-    expect(repositoryMocks.vaccines.findOne).toHaveBeenCalled();
+    expect(repositoryMocks.vaccines.findOne).toHaveBeenCalledWith(
+      vaccineItems[0].id,
+    );
     expect(body.id).toBe(vaccineItems[0].id);
     expect(body.model).toBe(vaccineItems[0].model);
     expect(body.illness).toBe(vaccineItems[0].illness);
   });
 
   it('should find many vaccines', async () => {
-    //arrange
     repositoryMocks.vaccines.find.mockResolvedValue(vaccineItems);
 
-    // act
     const {
       body: [firstVaccine],
       status,
     } = await request.get('/vaccines');
 
-    // assert
     expect(status).toBe(HttpStatus.OK);
     expect(repositoryMocks.vaccines.find).toHaveBeenCalled();
     expect(firstVaccine.id).toBe(vaccineItems[0].id);

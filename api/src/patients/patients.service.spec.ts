@@ -28,10 +28,10 @@ describe('PatientsService', () => {
 
   it('should return a patient by id', async () => {
     repositoryMocks.patients.findOne.mockResolvedValue(patientItems[0]);
-    const patient = await service.findOne(1);
+    const patient = await service.findOne(patientItems[0].id);
     expect(repositoryMocks.patients.findOne).toHaveBeenCalledWith({
       where: {
-        id: 1,
+        id: patientItems[0].id,
       },
     });
     expect(patient).toEqual(patientItems[0]);
