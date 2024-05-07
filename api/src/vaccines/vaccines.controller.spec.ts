@@ -38,9 +38,9 @@ describe('VaccinesController', () => {
     );
 
     expect(status).toBe(HttpStatus.OK);
-    expect(repositoryMocks.vaccines.findOne).toHaveBeenCalledWith(
-      vaccineItems[0].id,
-    );
+    expect(repositoryMocks.vaccines.findOne).toHaveBeenCalledWith({
+      where: { id: vaccineItems[0].id },
+    });
     expect(body.id).toBe(vaccineItems[0].id);
     expect(body.model).toBe(vaccineItems[0].model);
     expect(body.illness).toBe(vaccineItems[0].illness);
