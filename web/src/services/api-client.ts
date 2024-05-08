@@ -69,7 +69,8 @@ const request = async <T>({
     return {
       status: response.status,
       headers: response.headers,
-    } as any;
+      data: {} as T,
+    };
   }
 
   const responseJson = await response.json();
