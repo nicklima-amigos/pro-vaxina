@@ -65,6 +65,13 @@ const request = async <T>({
     throw new RequestError(response.status, errorText);
   }
 
+  if (response.status === 204) {
+    return {
+      status: response.status,
+      headers: response.headers,
+    } as any;
+  }
+
   const responseJson = await response.json();
 
   return {
@@ -90,6 +97,6 @@ export const patch = <T>(params: RequestWithBodyParams) => {
   return request<T>({ method: RequestMethod.PATCH, ...params });
 };
 
-export const remove = <T>(params: RequestParams) => {
-  return request<T>({ method: RequestMethod.DELETE, ...params });
+export const remove = async (params: RequestParams) => {
+  return request<undefined>({ method: RequestMethod.DELETE, ...params });
 };

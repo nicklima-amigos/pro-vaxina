@@ -21,7 +21,7 @@ export const createVaccinationRecord = async ({
 };
 
 export const deleteVaccinationRecord = async (id: number) => {
-  const response = await apiClient.remove<VaccinationRecord>({
+  const response = await apiClient.remove({
     endpoint: `/vaccination-records/${id}`,
   });
   return response;
