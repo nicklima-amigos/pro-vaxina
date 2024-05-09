@@ -33,10 +33,14 @@ describe('VaccinesController', () => {
   it('should find one vaccine', async () => {
     repositoryMocks.vaccines.findOne.mockResolvedValue(vaccineItems[0]);
 
-    const { body, status } = await request.get('/vaccines/1');
+    const { body, status } = await request.get(
+      `/vaccines/${vaccineItems[0].id}`,
+    );
 
     expect(status).toBe(HttpStatus.OK);
-    expect(repositoryMocks.vaccines.findOne).toHaveBeenCalled();
+    expect(repositoryMocks.vaccines.findOne).toHaveBeenCalledWith({
+      where: { id: vaccineItems[0].id },
+    });
     expect(body.id).toBe(vaccineItems[0].id);
     expect(body.model).toBe(vaccineItems[0].model);
     expect(body.illness).toBe(vaccineItems[0].illness);
