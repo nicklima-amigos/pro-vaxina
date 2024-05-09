@@ -24,7 +24,7 @@ describe('HealthcheckController', () => {
   });
 
   it('should respond with status ok and a message', async () => {
-    const { status, body } = await request.get('/');
+    const { status, body } = await request.get('/health-check');
 
     expect(status).toBe(HttpStatus.OK);
     expect(body).toHaveProperty('status');
