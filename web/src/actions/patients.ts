@@ -13,7 +13,7 @@ export const createPatient = async (patient: PatientFormFields) => {
 };
 
 export const deletePatient = async (id: number) => {
-  const response = await apiClient.remove<Patient>({
+  const response = await apiClient.remove({
     endpoint: `/patients/${id}`,
   });
   return response;

@@ -13,6 +13,8 @@ describe('PatientsService', () => {
       providers: [PatientsService, ...repositoryMocks.providers],
     }).compile();
 
+    jest.clearAllMocks();
+
     service = module.get<PatientsService>(PatientsService);
   });
 
@@ -69,7 +71,7 @@ describe('PatientsService', () => {
     const patient = await service.update(expectedPatient.id, patientToUpdate);
 
     expect(repositoryMocks.patients.save).toHaveBeenCalledWith({
-      updatePatientDto: patientToUpdate,
+      ...patientToUpdate,
       id: expectedPatient.id,
     });
 
@@ -77,7 +79,9 @@ describe('PatientsService', () => {
   });
 
   it('should delete a patient', async () => {
-    await service.remove(1);
-    expect(true).toBe(true);
+    const affected = 1;
+    repositoryMocks.patients.delete.mockResolvedValue({ affected });
+    const deleteResult = await service.remove(patientItems[0].id);
+    expect(deleteResult.affected).toBe(1);
   });
 });
