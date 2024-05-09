@@ -7,6 +7,7 @@ import { vaccinationRecordItems } from '@src/tests/stubs/vaccination-records.stu
 import { patientItems } from '@src/tests/stubs/patients.stubs';
 import { vaccineItems } from '@src/tests/stubs/vaccines.stubs';
 import { VaccinationRecord } from './entities/vaccination-record.entity';
+import { DeleteResult } from 'typeorm';
 
 describe('VaccinationRecordsService', () => {
   let service: VaccinationRecordsService;
@@ -105,15 +106,14 @@ describe('VaccinationRecordsService', () => {
   });
 
   it('should delete a record', async () => {
-    repositoryMocks.vaccinationRecords.delete.mockResolvedValue(
-      vaccinationRecordItems[0],
-    );
+    const expectedResult: DeleteResult = { raw: {}, affected: 1 };
+    repositoryMocks.vaccinationRecords.delete.mockResolvedValue(expectedResult);
 
-    const deletedRecord = await service.remove(vaccinationRecordItems[0].id);
+    const deleteResult = await service.remove(vaccinationRecordItems[0].id);
 
     expect(repositoryMocks.vaccinationRecords.delete).toHaveBeenCalledWith({
       id: vaccinationRecordItems[0].id,
     });
-    expect(deletedRecord).toBe(vaccinationRecordItems[0]);
+    expect(deleteResult).toBe(expectedResult);
   });
 });
