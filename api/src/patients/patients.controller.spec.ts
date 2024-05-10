@@ -112,7 +112,7 @@ describe('PatientsController', () => {
   });
 
   it('should delete a patient', async () => {
-    repositoryMocks.patients.delete.mockResolvedValue({ affected: 1 });
+    repositoryMocks.patients.delete.mockResolvedValue({ affected: 1, raw: {} });
     const { status } = await request.delete(`/patients/${patientItems[0].id}`);
     expect(repositoryMocks.patients.delete).toHaveBeenCalledWith({
       id: patientItems[0].id,

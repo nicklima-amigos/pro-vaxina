@@ -77,7 +77,7 @@ describe('VaccinesService', () => {
   });
 
   it('should delete a vaccine', async () => {
-    repositoryMocks.vaccines.delete.mockResolvedValue({ affected: 1 });
+    repositoryMocks.vaccines.delete.mockResolvedValue({ affected: 1, raw: {} });
     const result = await service.remove(vaccineItems[0].id);
     expect(result.affected).toBe(1);
     expect(repositoryMocks.vaccines.delete).toHaveBeenCalledWith({

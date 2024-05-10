@@ -46,7 +46,13 @@ describe('PatientsService', () => {
       birthDate: new Date('1990-01-01'),
     };
 
-    const expectedPatient = { ...patientToCreate, id: 1 };
+    const expectedPatient = {
+      ...patientToCreate,
+      id: 1,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+      records: [],
+    };
 
     repositoryMocks.patients.save.mockResolvedValue(expectedPatient);
 
@@ -64,7 +70,10 @@ describe('PatientsService', () => {
       birthDate: new Date('1990-01-01'),
     };
 
-    const expectedPatient = { ...patientToUpdate, id: 1 };
+    const expectedPatient = {
+      ...patientItems[0],
+      ...patientToUpdate,
+    };
 
     repositoryMocks.patients.save.mockResolvedValue(expectedPatient);
 
@@ -79,8 +88,7 @@ describe('PatientsService', () => {
   });
 
   it('should delete a patient', async () => {
-    const affected = 1;
-    repositoryMocks.patients.delete.mockResolvedValue({ affected });
+    repositoryMocks.patients.delete.mockResolvedValue({ affected: 1, raw: {} });
     const deleteResult = await service.remove(patientItems[0].id);
     expect(deleteResult.affected).toBe(1);
   });
