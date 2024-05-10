@@ -5,6 +5,10 @@ import { VaccinationRecord } from '@src/vaccination-records/entities/vaccination
 import { Vaccine } from '@src/vaccines/entities/vaccine.entity';
 import { Repository } from 'typeorm';
 
+type MockedTypeORMRepository<T> = jest.Mocked<
+  Pick<Repository<T>, 'find' | 'findOne' | 'save' | 'update' | 'delete'>
+>;
+
 const repositoryMockFactory = <T>() =>
   ({
     find: jest.fn(),
@@ -12,7 +16,7 @@ const repositoryMockFactory = <T>() =>
     save: jest.fn(),
     update: jest.fn(),
     delete: jest.fn(),
-  }) as unknown as jest.Mocked<Repository<T>>;
+  }) as MockedTypeORMRepository<T>;
 
 export const vaccinationRecords = repositoryMockFactory<VaccinationRecord>();
 export const patients = repositoryMockFactory<Patient>();
