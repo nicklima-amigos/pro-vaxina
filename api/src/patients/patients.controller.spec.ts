@@ -7,17 +7,11 @@ import { HttpStatus } from '@nestjs/common';
 import { patientItems } from '@src/tests/stubs/patients.stubs';
 import { Patient } from './entities/patient.entity';
 import { UpdatePatientDto } from './dto/update-patient.dto';
+import { stringifyObjectDates } from '@src/tests/utils/transform-dates';
 
 describe('PatientsController', () => {
   let controller: PatientsController;
   let request: Agent;
-
-  const stringifyPatientDates = (patient: Patient) => ({
-    ...patient,
-    createdAt: patient.createdAt.toISOString(),
-    updatedAt: patient.updatedAt.toISOString(),
-    birthDate: patient.birthDate.toISOString(),
-  });
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
@@ -51,13 +45,13 @@ describe('PatientsController', () => {
       id: 1,
       createdAt: new Date(),
       updatedAt: new Date(),
-      birthDate: new Date('1990-01-01'),
+      birthDate: new Date(patientToCreate.birthDate),
       records: [],
     };
 
     repositoryMocks.patients.save.mockResolvedValue(createdPatient);
 
-    const expectedPatient = stringifyPatientDates(createdPatient);
+    const expectedPatient = stringifyObjectDates(createdPatient);
 
     const { body, status } = await request
       .post('/patients')
@@ -70,7 +64,7 @@ describe('PatientsController', () => {
 
   it('should find all patients', async () => {
     repositoryMocks.patients.find.mockResolvedValue(patientItems);
-    const expectedPatients = patientItems.map(stringifyPatientDates);
+    const expectedPatients = patientItems.map(stringifyObjectDates);
     const { body, status } = await request.get('/patients');
     expect(repositoryMocks.patients.find).toHaveBeenCalled();
     expect(status).toBe(HttpStatus.OK);
@@ -79,7 +73,7 @@ describe('PatientsController', () => {
 
   it('should find one patient', async () => {
     repositoryMocks.patients.findOne.mockResolvedValue(patientItems[0]);
-    const expectedPatient = stringifyPatientDates(patientItems[0]);
+    const expectedPatient = stringifyObjectDates(patientItems[0]);
     const { body, status } = await request.get(
       `/patients/${patientItems[0].id}`,
     );
@@ -99,7 +93,7 @@ describe('PatientsController', () => {
       ...patientToUpdate,
     };
     repositoryMocks.patients.save.mockResolvedValue(returnedPatient);
-    const expectedPatient = stringifyPatientDates(returnedPatient);
+    const expectedPatient = stringifyObjectDates(returnedPatient);
     const { body, status } = await request
       .patch(`/patients/${patientItems[0].id}`)
       .send(patientToUpdate);

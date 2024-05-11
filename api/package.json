@@ -81,6 +81,7 @@
       "**/*.(t|j)s",
       "!**/tests/**",
       "!**/*.module.ts",
+      "!**/*.entity.ts",
       "!**/*.e2e-spec.ts",
       "!**/.eslintrc.*",
       "!**/main.ts"

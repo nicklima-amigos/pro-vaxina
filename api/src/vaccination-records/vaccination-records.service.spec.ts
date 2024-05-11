@@ -39,13 +39,27 @@ describe('VaccinationRecordsService', () => {
       vaccinationRecordItems[0],
     );
 
-    const record = await service.findOne(1);
+    const record = await service.findOne(vaccinationRecordItems[0].id);
 
     expect(repositoryMocks.vaccinationRecords.findOne).toHaveBeenCalledWith({
       relations: ['vaccine', 'patient'],
-      where: { id: 1 },
+      where: { id: vaccinationRecordItems[0].id },
     });
     expect(record).toEqual(vaccinationRecordItems[0]);
+  });
+
+  it('should find records based on a patient', async () => {
+    repositoryMocks.vaccinationRecords.find.mockResolvedValue(
+      vaccinationRecordItems,
+    );
+
+    const records = await service.findByPatient(patientItems[0].id);
+
+    expect(repositoryMocks.vaccinationRecords.find).toHaveBeenCalledWith({
+      where: { patient: { id: patientItems[0].id } },
+      relations: ['vaccine'],
+    });
+    expect(records).toEqual(vaccinationRecordItems);
   });
 
   it('should create a vaccination record', async () => {
@@ -96,9 +110,7 @@ describe('VaccinationRecordsService', () => {
     const record = await service.update(expectedRecord.id, recordToUpdate);
 
     expect(repositoryMocks.vaccinationRecords.save).toHaveBeenCalledWith({
-      patientId: recordToUpdate.patientId,
-      vaccineId: recordToUpdate.vaccineId,
-      applierName: recordToUpdate.applierName,
+      ...recordToUpdate,
       id: expectedRecord.id,
     });
 

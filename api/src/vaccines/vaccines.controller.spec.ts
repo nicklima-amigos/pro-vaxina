@@ -1,22 +1,26 @@
+import { HttpStatus } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
+import { repositoryMocks } from '@src/tests/mocks';
+import { vaccineItems } from '@src/tests/stubs/vaccines.stubs';
+import { stringifyObjectDates } from '@src/tests/utils/transform-dates';
+import { Agent, agent } from 'supertest';
+import { Vaccine } from './entities/vaccine.entity';
 import { VaccinesController } from './vaccines.controller';
 import { VaccinesService } from './vaccines.service';
-import { repositoryMocks } from '@src/tests/mocks';
-import { Agent, agent } from 'supertest';
-import { HttpStatus } from '@nestjs/common';
-import { vaccineItems } from '@src/tests/stubs/vaccines.stubs';
 
 describe('VaccinesController', () => {
   let controller: VaccinesController;
   let request: Agent;
 
-  beforeAll(async () => {
+  beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       controllers: [VaccinesController],
       providers: [VaccinesService, ...repositoryMocks.providers],
     }).compile();
 
     controller = module.get<VaccinesController>(VaccinesController);
+
+    jest.clearAllMocks();
 
     await module.init();
 
@@ -41,23 +45,77 @@ describe('VaccinesController', () => {
     expect(repositoryMocks.vaccines.findOne).toHaveBeenCalledWith({
       where: { id: vaccineItems[0].id },
     });
-    expect(body.id).toBe(vaccineItems[0].id);
-    expect(body.model).toBe(vaccineItems[0].model);
-    expect(body.illness).toBe(vaccineItems[0].illness);
+    expect(body).toEqual(stringifyObjectDates(vaccineItems[0]));
   });
 
   it('should find many vaccines', async () => {
     repositoryMocks.vaccines.find.mockResolvedValue(vaccineItems);
 
-    const {
-      body: [firstVaccine],
-      status,
-    } = await request.get('/vaccines');
+    const { body, status } = await request.get('/vaccines');
 
     expect(status).toBe(HttpStatus.OK);
     expect(repositoryMocks.vaccines.find).toHaveBeenCalled();
-    expect(firstVaccine.id).toBe(vaccineItems[0].id);
-    expect(firstVaccine.model).toBe(vaccineItems[0].model);
-    expect(firstVaccine.illness).toBe(vaccineItems[0].illness);
+    expect(body).toEqual(vaccineItems.map(stringifyObjectDates));
+  });
+
+  it('should create a vaccine', async () => {
+    const vaccineToCreate = {
+      model: 'test vaccine',
+      manufacturer: 'test vaccine manufacturer',
+      illness: 'test illness',
+      expirationDate: '2030-01-01',
+    };
+
+    const expectedVaccine: Vaccine = {
+      ...vaccineToCreate,
+      id: 1,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+      expirationDate: new Date(vaccineToCreate.expirationDate),
+    };
+    repositoryMocks.vaccines.save.mockResolvedValue(expectedVaccine);
+
+    const { status, body } = await request
+      .post('/vaccines')
+      .send(vaccineToCreate);
+
+    expect(status).toBe(HttpStatus.CREATED);
+    expect(body).toEqual(stringifyObjectDates(expectedVaccine));
+    expect(repositoryMocks.vaccines.save).toHaveBeenCalledWith(vaccineToCreate);
+  });
+
+  it('should update a vaccine', async () => {
+    const vaccineToUpdate = {
+      model: 'modified test vaccine',
+    };
+
+    const expectedVaccine: Vaccine = {
+      ...vaccineItems[0],
+      ...vaccineToUpdate,
+    };
+
+    repositoryMocks.vaccines.save.mockResolvedValue(expectedVaccine);
+
+    const { status, body } = await request
+      .patch(`/vaccines/${vaccineItems[0].id}`)
+      .send(vaccineToUpdate);
+
+    expect(status).toBe(HttpStatus.OK);
+    expect(body).toEqual(stringifyObjectDates(expectedVaccine));
+    expect(repositoryMocks.vaccines.save).toHaveBeenCalledWith({
+      ...vaccineToUpdate,
+      id: expectedVaccine.id,
+    });
+  });
+
+  it('should delete a vaccine', async () => {
+    repositoryMocks.vaccines.delete.mockResolvedValue({ raw: {}, affected: 1 });
+
+    const { status } = await request.delete(`/vaccines/${vaccineItems[0].id}`);
+
+    expect(status).toBe(HttpStatus.NO_CONTENT);
+    expect(repositoryMocks.vaccines.delete).toHaveBeenCalledWith({
+      id: vaccineItems[0].id,
+    });
   });
 });
