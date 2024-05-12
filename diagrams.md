@@ -1,7 +1,5 @@
 ### Diagrama de Classes
 
-Qualquer outra coisa quiser explicar qualquer coisa aí
-
 ```mermaid
 ---
 title: Diagrama de Classes
@@ -13,7 +11,7 @@ class BaseEntity {
     Date updatedAt
 }
 
-%% Declaração das relações entre as classes
+%% Declare relationships between classes
 BaseEntity <|-- Vaccine
 BaseEntity <|-- VaccinationRecord
 BaseEntity <|-- Patient
