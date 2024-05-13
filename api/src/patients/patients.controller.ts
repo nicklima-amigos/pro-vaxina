@@ -7,6 +7,8 @@ import {
   Param,
   Delete,
   ParseIntPipe,
+  HttpStatus,
+  HttpCode,
 } from '@nestjs/common';
 import { PatientsService } from './patients.service';
 import { CreatePatientDto } from './dto/create-patient.dto';
@@ -40,7 +42,8 @@ export class PatientsController {
   }
 
   @Delete(':id')
-  remove(@Param('id', ParseIntPipe) id: number) {
-    return this.patientsService.remove(id);
+  @HttpCode(HttpStatus.NO_CONTENT)
+  async remove(@Param('id', ParseIntPipe) id: number) {
+    await this.patientsService.remove(id);
   }
 }

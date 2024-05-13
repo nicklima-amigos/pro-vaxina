@@ -7,6 +7,8 @@ import {
   Param,
   Delete,
   ParseIntPipe,
+  HttpCode,
+  HttpStatus,
 } from '@nestjs/common';
 import { VaccinationRecordsService } from './vaccination-records.service';
 import { CreateVaccinationRecordDto } from './dto/create-vaccination-record.dto';
@@ -50,7 +52,8 @@ export class VaccinationRecordsController {
   }
 
   @Delete(':id')
-  remove(@Param('id', ParseIntPipe) id: number) {
-    return this.vaccinationRecordsService.remove(id);
+  @HttpCode(HttpStatus.NO_CONTENT)
+  async remove(@Param('id', ParseIntPipe) id: number) {
+    await this.vaccinationRecordsService.remove(id);
   }
 }

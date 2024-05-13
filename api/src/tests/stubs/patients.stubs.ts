@@ -1,6 +1,5 @@
 import { Patient } from '@src/patients/entities/patient.entity';
-import { createManyPatients } from './factories/patients.factory';
+import { createPatient } from './factories/patients.factory';
+import { createMany } from './factories/factory.helpers';
 
-export const patientItems: Patient[] = createManyPatients({
-  quantity: 10,
-});
+export const patientItems: Patient[] = createMany(createPatient, 10);

@@ -9,7 +9,7 @@
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
-    "start:ci": "nest start >/dev/null 2>&1 &",
+    "start:ci": "nest start > ci-logs.txt 2>&1 &",
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/main",
@@ -78,7 +78,17 @@
       "^.+\\.(t|j)s$": "ts-jest"
     },
     "collectCoverageFrom": [
-      "**/*.(t|j)s"
+      "**/*.(t|j)s",
+      "!**/tests/**",
+      "!**/*.module.ts",
+      "!**/*.entity.ts",
+      "!**/*.e2e-spec.ts",
+      "!**/.eslintrc.*",
+      "!**/main.ts"
+    ],
+    "coveragePathIgnorePatterns": [
+      "<rootDir>/node_modules",
+      "<rootDir>/dist"
     ],
     "coverageDirectory": "../coverage",
     "testEnvironment": "node"

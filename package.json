@@ -20,7 +20,7 @@
     "backend:ci": "cd ./api && npm run start:ci",
     "frontend:dev": "cd ./web && npm run dev",
     "test-backend": "cd ./api && npm run test",
-    "wait-for-api": "wait-on http://localhost:8000",
+    "wait-for-api": "wait-on http://localhost:8000/health-check",
     "test-e2e": "cd ./web && npm run test:e2e"
   },
   "keywords": [],

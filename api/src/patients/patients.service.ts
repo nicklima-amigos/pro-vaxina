@@ -25,7 +25,7 @@ export class PatientsService {
   }
 
   update(id: number, updatePatientDto: UpdatePatientDto) {
-    return this.patientsRepository.save({ id, updatePatientDto });
+    return this.patientsRepository.save({ id, ...updatePatientDto });
   }
 
   remove(id: number) {
