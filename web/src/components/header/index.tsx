@@ -10,9 +10,9 @@ interface HeaderProps {
 }
 const styles = {
   header:
-    'flex items-center justify-between bg-blue-300 text-2xl p-4 text-center',
+    'flex items-center justify-between bg-red-700 text-2xl p-4 text-center',
   buttonContainer: 'flex items-center gap-4',
-  titleContainer: 'flex items-center gap-4',
+  titleContainer: 'text-yellow-300 flex items-center gap-4',
 };
 const Header = React.forwardRef<HTMLDivElement, HeaderProps>(
   ({ className, title = 'Pro-Vaxina', children }, ref) => {
