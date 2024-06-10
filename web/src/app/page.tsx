@@ -3,7 +3,6 @@ import { Header } from '@/components/header';
 import {
   Table,
   TableBody,
-  TableCaption,
   TableCell,
   TableHead,
   TableHeader,
