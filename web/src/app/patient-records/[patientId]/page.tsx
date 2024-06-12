@@ -3,7 +3,6 @@ import { Header } from '@/components/header';
 import {
   Table,
   TableBody,
-  TableCaption,
   TableCell,
   TableHead,
   TableHeader,
@@ -44,8 +43,8 @@ const UserRecords: FC<UserRecordsProps> = async ({ params }) => {
           </Button>
         </Link>
       </Header>
+      <h1 className="text-4xl text-center my-8">Lista de vacinação</h1>
       <Table>
-        <TableCaption>Lista de vacinação.</TableCaption>
         <TableHeader>
           <TableRow>
             <TableHead>Identificação</TableHead>

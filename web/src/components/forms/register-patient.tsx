@@ -46,9 +46,13 @@ export const RegisterPatientForm: FC = () => {
       <InputWithLabel
         label={'CPF'}
         onChange={({ target }) =>
-          setPatientFormState({ ...patientFormState, cpf: target.value })
+          setPatientFormState({
+            ...patientFormState,
+            cpf: target.value,
+          })
         }
         id="cpf"
+        maxLength={11}
       />
 
       <InputWithLabel
