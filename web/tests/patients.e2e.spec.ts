@@ -33,7 +33,7 @@ test.describe('Patients', () => {
 
     const header = page.locator('h3');
     const homeButton = page.getByText('Home');
-    await expect(header).toContainText('Patients');
+    await expect(header).toContainText('Pacientes');
 
     await homeButton.click();
     await expect(header).toContainText('Pro-Vaxina');

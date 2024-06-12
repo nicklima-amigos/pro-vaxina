@@ -3,7 +3,6 @@ import { Header } from '@/components/header';
 import {
   Table,
   TableBody,
-  TableCaption,
   TableCell,
   TableHead,
   TableHeader,
@@ -20,7 +19,7 @@ export default async function Vaccines() {
 
   return (
     <>
-      <Header title="Vaccines">
+      <Header title="Vacinas">
         <Link href="/register/vaccines">
           <Button variant="default">Registrar</Button>
         </Link>
@@ -28,8 +27,8 @@ export default async function Vaccines() {
           <Button variant="destructive">Voltar</Button>
         </Link>
       </Header>
+      <h1 className="text-4xl text-center my-8">Lista de vacinas</h1>
       <Table>
-        <TableCaption>Lista de vacinas.</TableCaption>
         <TableHeader>
           <TableRow>
             <TableHead>Identificação</TableHead>
